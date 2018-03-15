@@ -1,1 +1,2 @@
 https://www.programmableweb.com/api/ebay-finding Ebay
+https://www.igdb.com/api Game DataBase
