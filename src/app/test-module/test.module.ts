@@ -14,13 +14,15 @@ export class TestModule implements OnInit {
   timeStamp: number;
 
   constructor(private http: Http) {
+    var myHash = this.createHash();
+    var req = 'https://gateway.marvel.com/v1/public/characters?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
   }
 
   ngOnInit() {
   }
 
   getTimestamp(): number{
-      return Date.now()/1000
+      return (Date.now()/1000)
   }
 
   createHash(): string{
@@ -32,7 +34,9 @@ export class TestModule implements OnInit {
   makeRequest(): void {
     this.loading = true;
     var myHash = this.createHash();
-    this.http.request('https://gateway.marvel.com/v1/public/characters?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash )
+    var req = 'https://gateway.marvel.com/v1/public/characters?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+    console.log(req); 
+    this.http.request(req)
     .subscribe((res: Response) => {
       this.data = res.json();
       this.loading = false;
