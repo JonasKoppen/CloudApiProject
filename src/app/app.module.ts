@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TestModule } from './test-module/test.module';
+import { CharacterService } from './services/marvel.characters.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -12,9 +14,11 @@ import { TestModule } from './test-module/test.module';
     TestModule
   ],
   imports: [
-    BrowserModule, HttpModule
+    BrowserModule, 
+    HttpModule, 
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CharacterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
