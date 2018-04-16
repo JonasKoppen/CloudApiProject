@@ -1,2 +1,3 @@
 https://www.programmableweb.com/api/ebay-finding Ebay
 https://www.igdb.com/api Game DataBase
+https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0

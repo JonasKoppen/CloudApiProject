@@ -7,7 +7,7 @@ import {Md5} from 'ts-md5/dist/md5';
   templateUrl: './test.module.html'
 })
 export class TestModule implements OnInit {
-  data: string;
+  data: string = "hi";
   loading: boolean;
   apikey = "acdb5b6c98e4a5408e05093f4d0f6de4";
   privateKey="fdc26ca47556432b17f1372f3174645ed85853fe";
@@ -16,9 +16,11 @@ export class TestModule implements OnInit {
   constructor(private http: Http) {
     var myHash = this.createHash();
     var req = 'https://gateway.marvel.com/v1/public/characters?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+    console.log(req);
   }
 
   ngOnInit() {
+    this.makeRequest();
   }
 
   getTimestamp(): number{
