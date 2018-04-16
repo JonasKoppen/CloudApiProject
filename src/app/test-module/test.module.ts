@@ -9,19 +9,21 @@ import { CharacterService, character } from '../services/marvel.characters.servi
   templateUrl: './test.module.html'
 })
 export class TestModule implements OnInit {
+  nameCharReq: string
   imageUrl : string;
   data: string = "hi";
   apikey = "acdb5b6c98e4a5408e05093f4d0f6de4";
   privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
   character: character;
+  private _search: string = "Loki";
 
   constructor(private _svc : CharacterService) {
   }
 
   ngOnInit() {
-    this._svc.getCharacterSpecific("Loki")
+    this._svc.getCharacterSpecific(this._search)
           .subscribe(result => this.character = result);
-    setInterval(this.ChangeImage , 10000);
+    setInterval(this.ChangeImage , 1000);
   }
 
   ChangeImage = () =>
@@ -32,4 +34,16 @@ export class TestModule implements OnInit {
       }
       
     }
+
+  get CharReq(){
+    console.log(this._search + "req")
+    return this._search
+  }
+
+  set CharReq(name : string){
+    console.log(name)
+    this._search = name;
+    this._svc.getCharacterSpecific(this._search)
+          .subscribe(result => this.character = result);
+  }
 }
