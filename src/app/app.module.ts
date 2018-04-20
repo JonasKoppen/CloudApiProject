@@ -5,6 +5,10 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
 import { TestModule } from './test-module/test.module';
 import { CharacterService } from './services/marvel.characters.service';
+import { DeLijnComponent } from './de-lijn/de-lijn.component';
+import { DeLijnService } from './services/delijn.service';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,10 +19,13 @@ import { CharacterService } from './services/marvel.characters.service';
   imports: [
     BrowserModule,
     MDBBootstrapModule.forRoot(),
-    
+    FormsModule,
+    HttpClientModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [CharacterService],
+  providers: [
+    CharacterService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
