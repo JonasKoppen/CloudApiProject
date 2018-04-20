@@ -1,15 +1,27 @@
-# Cloud API - *Jonas Koppen*
+# CloudApiProject
 
-## Opdracht:
-* Individuele opdracht in te dienen tegen het einde van dit semester.
-* werken met een github repository, waarvan je me de URL bezorgt.
-* Je maakt gebruik van een Angular of Ionic client. Indien Ionic gekozen wordt zorg dan dat deze volledig in de browser werkt.
-* Je kiest zelf een REST API (je kan bijvoorbeeld hier inspiratie opdoen http://www.programmableweb.com )
-* Deze API spreek je aan vanuit de client, je gebruikt hierbij zoveel mogelijk REST functionaliteiten.
-    * Hypermedia links (waardoor je zo weinig mogelijk url's moet hardcoden, buiten de root URL uiteraard)
-    * paging
-    * search/filter mogelijkheden via de query string
-    * Opvragen van een resource via de ID
-    * ...
-* Je moet dus een REST API zoeken die minstens aan 3 van bovenstaande functionaliteiten voorziet om te slagen op dit gedeelte. Bovendien moet je minstens 3 resources gebruiken.
-* de rest van de opdracht volgt gaandeweg naarmate de leerstof vordert.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
