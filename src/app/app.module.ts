@@ -5,16 +5,18 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
 import { TestModule } from './test-module/test.module';
 import { CharacterService } from './services/marvel.characters.service';
-import { DeLijnComponent } from './de-lijn/de-lijn.component';
-import { DeLijnService } from './services/delijn.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestModule
+    TestModule,
+    HomeComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
