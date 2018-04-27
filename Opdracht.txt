@@ -1,0 +1,44 @@
+API's: Spore
+Marvel
+
+Game: Gues the Character
+
+
+
+Opdracht
+
+Eind Datum: maandag 4/6/2018 om 12u 
+
+1.
+Je bouwt een Angular of Ionic client.
+
+2.
+Je kiest zelf een REST API: Marvel API
+Deze API spreek je aan vanuit de client, je gebruikt hierbij meerdere REST functionaliteiten.
+    Hypermedia links (waardoor je zo weinig mogelijk url's moet hardcoden, buiten de root URL uiteraard)
+    Paging
+    search/filter mogelijkheden via de query string
+    Opvragen van een resource via de ID
+...
+Je moet dus een REST API zoeken die minstens aan 3 van bovenstaande functionaliteiten voorziet om te slagen op dit gedeelte. Bovendien moet je minstens 3 resources (3 objecten, vb: characters, creators, events, series, stories) gebruiken.
+
+3.
+Bouw je eigen REST API (met MS SQL databank) met behulp van het ASP.NET Core MVC framework (versie 2.x)
+Voorzie (minstens) 2 controllers (die elk een andere resource vertegenwoordigen) waarbij telkens:
+een resource lijst kan worden opgevraagd
+    1 specifieke resource (adhv. de ID) kan worden opgevraagd
+    1 specifieke resource kan worden verwijderd 
+    een resource kan worden aangepast
+    een resource kan worden aangemaakt
+    Implementeer voor minstens 1 controller dat er kan worden gewerkt met 'paging' bij het opvragen van de lijst, voorzie tevens een "default" page size.
+    Implementeer voor minstens 1 controller dat er kan worden gewerkt met een 'sort' (op minstens 1 attribuut)
+    implementeer voor minstens 1 controller dat er kan gefilterd worden (op minstens 1 attribuut)
+De gegevens die de API beheert bewaar je in een lokale MS SQL databank waarbij je EF Core gebruikt als OR mapper.
+Zorg dat er automatisch wat test data wordt aangemaakt indien er nog geen gegevens in de databank zitten.
+Roep je eigen API aan vanuit je Angular/Ionic client, dat mag worden geïntegreerd in je bestaande componenten/pages of als een volledig apart deel in de toepassing. Doe minstens een GET en POST operatie vanuit je client (uiteraard via knoppen in de UI).
+
+4. 
+Beveilig je toepassing EN (eigen ASP MVC) API via OAuth
+Je mag hiervoor een bestaande OAuth provider gebruiken (Firebase, Auth0,...)
+Dus gebruiker moet eerst inloggen op de Angular/Ionic app via de OAuth provider login
+Het token stuur je dan telkens ook mee naar je eigen gemaakte REST API, zonder dat token mag er geen toegang zijn tot je API (kan je testen met postman)
