@@ -3,8 +3,6 @@ Marvel
 
 Game: Gues the Character
 
-
-
 Opdracht
 
 Eind Datum: maandag 4/6/2018 om 12u 
@@ -42,3 +40,21 @@ Beveilig je toepassing EN (eigen ASP MVC) API via OAuth
 Je mag hiervoor een bestaande OAuth provider gebruiken (Firebase, Auth0,...)
 Dus gebruiker moet eerst inloggen op de Angular/Ionic app via de OAuth provider login
 Het token stuur je dan telkens ook mee naar je eigen gemaakte REST API, zonder dat token mag er geen toegang zijn tot je API (kan je testen met postman)
+
+
+Denkplaats:
+
+Home Page met uitleg en wie ben ik => inlog scherm
+Inloggen via OAuth provider (google) => Error bad login ? welcome page
+
+Welcome page bevat uitleg
+
+Data Page bevat lijsten met de 3 objecten van marvel, 1 pijler met characters, 1 pîjler met verhalen en 1 pijler met ???)
+
+Game Page: Je krijgt een foto en raad het personage
+
+??? Page: Eigen API
+        2 objecten:
+            1) boeken: Data base met boeken
+            2) films: een database van films
+
