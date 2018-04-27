@@ -1,24 +1,26 @@
 
 <div class="card">
         <!--Card image-->
-        <img class="img-fluid" [src]="'https://mdbootstrap.com/img/Photos/Slides/'+ imageUrl" alt="Card image cap">
-        
-        <select class="form-control" [(ngModel)]="imageNr">
-            <option *ngFor = "let i of images" value="{{i}}">Image {{i}}</option>
-        </select>
         
         <div class="card-body">
             <!--Title-->
-            <h4 class="card-title">Home Card Title</h4>
+            <h4 class="card-title">Random Character list</h4>
             <!--Text-->
-            <p class="card-text">Hi, Welcome to the home screen of Jonas Koppen</p>
-            <br>
-            <div>
-                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
-                <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
-            </div>
-            <br>
-            <a  class="btn btn-primary waves-light" mdbRippleRadius [textContent] = "btnContent" (click)="btnClick()"></a>
+            <table clas="table table-hover"  style="text-align:center">
+                <thead>
+                  <tr class="blue-grey lighten-4">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let char of characters">
+                      <th>{{char.id}}</th>
+                      <td>{{char.name}}</td>
+                      <td><img class="img-fluid" src="{{char.thumbnail.path}}.{{char.thumbnail.extension}}" alt="No image" ></td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
 </div>

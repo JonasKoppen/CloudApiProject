@@ -9,6 +9,8 @@ export class CharacterService {
     apikey = "acdb5b6c98e4a5408e05093f4d0f6de4";
     privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
     timeStamp: number;
+    totalChars = 1491;
+    
 
     getTimestamp(): number{
         return (Date.now()/1000)
@@ -24,8 +26,10 @@ export class CharacterService {
 
     getCharacterUnknown() : Observable<character>
     {
+        var limit = 20;
+        var offset = Math.round(Math.random()*(this.totalChars - limit))
         var myHash = this.createHash();
-        var req = 'https://gateway.marvel.com/v1/public/characters?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var req = 'https://gateway.marvel.com/v1/public/characters?'+'limit='+limit + '&offset='+offset+'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
         console.log(req);
         return this._http.get<character>(req)
         //.do(data => console.log(JSON.stringify(data)));
