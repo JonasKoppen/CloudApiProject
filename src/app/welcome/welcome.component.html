@@ -6,21 +6,8 @@
             <!--Title-->
             <h4 class="card-title">Random Character list</h4>
             <!--Text-->
-            <table clas="table table-hover"  style="text-align:center">
-                <thead>
-                  <tr class="blue-grey lighten-4">
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>image</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let char of characters">
-                      <th>{{char.id}}</th>
-                      <td>{{char.name}}</td>
-                      <td><img class="img-fluid" src="{{char.thumbnail.path}}.{{char.thumbnail.extension}}" alt="No image" ></td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="container">
+            <app-charList></app-charList>
+          </div>
         </div>
 </div>

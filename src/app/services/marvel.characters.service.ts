@@ -26,7 +26,7 @@ export class CharacterService {
 
     getCharacterUnknown() : Observable<character>
     {
-        var limit = 20;
+        var limit = 10;
         var offset = Math.round(Math.random()*(this.totalChars - limit))
         var myHash = this.createHash();
         var req = 'https://gateway.marvel.com/v1/public/characters?'+'limit='+limit + '&offset='+offset+'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;

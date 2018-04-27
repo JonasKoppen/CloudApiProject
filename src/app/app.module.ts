@@ -12,6 +12,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { RouterModule } from '@angular/router';
+import { CharacterListComponent } from './charList/characterList.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RouterModule } from '@angular/router';
 
     TestModule,
     HomeComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    CharacterListComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     RouterModule.forRoot([
       {path: "home", component : HomeComponent},
+      {path: "list", component : CharacterListComponent},
       {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},
       {path : "**", redirectTo: "404"}
