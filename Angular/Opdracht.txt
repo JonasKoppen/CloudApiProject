@@ -13,9 +13,9 @@ Je bouwt een Angular of Ionic client.
 2.
 Je kiest zelf een REST API: Marvel API
 Deze API spreek je aan vanuit de client, je gebruikt hierbij meerdere REST functionaliteiten.
-    Hypermedia links (waardoor je zo weinig mogelijk url's moet hardcoden, buiten de root URL uiteraard)
+    Hypermedia links (waardoor je zo weinig mogelijk url's moet hardcoden, buiten de root URL uiteraard): laden van foto's
     Paging
-    search/filter mogelijkheden via de query string
+    search/filter mogelijkheden via de query string: zoeken van een held, de helden lijst
     Opvragen van een resource via de ID
 ...
 Je moet dus een REST API zoeken die minstens aan 3 van bovenstaande functionaliteiten voorziet om te slagen op dit gedeelte. Bovendien moet je minstens 3 resources (3 objecten, vb: characters, creators, events, series, stories) gebruiken.
