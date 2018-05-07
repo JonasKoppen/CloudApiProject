@@ -12,5 +12,6 @@ namespace MarvelMoviesAPI.Controllers.Objects
         public int IMDBScore { get; set; }
         //public List<Hero> Heroes { get; set; }
         public int ReleaseYear { get; set; }
+        public string productionCompany { get; set; }
     }
 }
