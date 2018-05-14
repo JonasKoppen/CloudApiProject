@@ -13131,11 +13131,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jonas\\Documents\\CloudAPI\\dotnetEx\\dotnetEx.csproj",
+      "projectUniqueName": "C:\\Users\\jonas\\Documents\\CloudAPI\\CloudApiProject\\dotnetEX\\dotnetEx.csproj",
       "projectName": "dotnetEx",
-      "projectPath": "C:\\Users\\jonas\\Documents\\CloudAPI\\dotnetEx\\dotnetEx.csproj",
+      "projectPath": "C:\\Users\\jonas\\Documents\\CloudAPI\\CloudApiProject\\dotnetEX\\dotnetEx.csproj",
       "packagesPath": "C:\\Users\\jonas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jonas\\Documents\\CloudAPI\\dotnetEx\\obj\\",
+      "outputPath": "C:\\Users\\jonas\\Documents\\CloudAPI\\CloudApiProject\\dotnetEX\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

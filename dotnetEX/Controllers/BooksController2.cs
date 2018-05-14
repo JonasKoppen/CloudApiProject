@@ -21,8 +21,8 @@ namespace dotnetEx.Controllers
         [HttpGet]
         public List<Book> GetBooks()
         {
-            //var books = context.Books.Include(d => d.Author);
-            return context.Books.ToList();
+            var books = context.Books.Include(d => d.Author);
+            return books.ToList();
         }
 
         public IActionResult GetBooksForAuthor(int id)
@@ -60,13 +60,20 @@ namespace dotnetEx.Controllers
             var orgBook = context.Books.Find(updateBook.Id);
             if (orgBook == null)
                 return NotFound();
-
             orgBook.Title = updateBook.Title;
             orgBook.Pages = updateBook.Pages;
             orgBook.ISBN = updateBook.ISBN;
             orgBook.Genre = updateBook.Genre;
             context.SaveChanges();
             return Ok(orgBook);
+        }
+
+        [HttpPost]
+        public IActionResult CreateBook([FromBody] Book newBook)
+        {
+            context.Books.Add(newBook);
+            context.SaveChanges();
+            return Created("", newBook);
         }
 
     }

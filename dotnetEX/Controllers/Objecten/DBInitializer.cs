@@ -13,29 +13,32 @@ namespace dotnetEx.Controllers.Objecten
             var authors = new Author[] {
                     new Author
                     {
-                        name = "Koppen",
-                        firstName = "Jonas",
+                        Name = "Koppen",
+                        FirstName = "Jonas",
                     },
 
                     new Author
                     {
-                        name = "Janssen",
-                        firstName = "Tomas",
+                        Name = "Janssen",
+                        FirstName = "Tomas",
                     },
 
                     new Author
                     {
-                        name = "Jamar",
-                        firstName = "JoJorennas",
+                        Name = "Jamar",
+                        FirstName = "JoJorennas",
                     }
                 };
 
             if (!context.Authors.Any())
             {
-                
-                foreach(Author au in authors)
-                    context.Authors.Add(au);
 
+                var au = new Author()
+                {
+                    Name = "Koppen",
+                    FirstName = "Jonas",
+                };
+                context.Authors.Add(au);
                 context.SaveChanges();
             }
 
@@ -47,7 +50,7 @@ namespace dotnetEx.Controllers.Objecten
                     ISBN = "046325",
                     Pages = 374,
                     Genre = "Adventure",
-                    Author = authors.Single(a => a.name == "Koppen")
+                    Author = context.Authors.Single(a => a.Name == "Koppen")
                     
                 };
                 context.Books.Add(bk);
@@ -57,7 +60,7 @@ namespace dotnetEx.Controllers.Objecten
                     ISBN = "046326",
                     Pages = 345,
                     Genre = "Adventure",
-                    Author = authors.Single(a => a.name == "Koppen")
+                    //Author = authors.Single(a => a.name == "Koppen")
                 };
                 context.Books.Add(bk);
                 bk = new Book()
@@ -66,7 +69,7 @@ namespace dotnetEx.Controllers.Objecten
                     ISBN = "046365",
                     Pages = 401,
                     Genre = "Adventure",
-                    Author = authors.Single(a => a.name == "Koppen")
+                    //gAuthor = authors.Single(a => a.name == "Koppen")
                 };
                 context.Books.Add(bk);
                 context.SaveChanges();

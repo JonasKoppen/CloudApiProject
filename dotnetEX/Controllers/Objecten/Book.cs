@@ -12,9 +12,9 @@ namespace dotnetEx.Controllers.Objecten
         public string Title { get; set; }
         public string ISBN { get; set; }
         //public int AuthorId { get; set; }
-        public Author Author { get; set; }
         public int Pages { get; set; }
         public string Genre { get; set; }
+        public Author Author { get; set; }
 
 
     }
@@ -22,10 +22,9 @@ namespace dotnetEx.Controllers.Objecten
     public class Author
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public string firstName { get; set; }
-
+        public string Name { get; set; }
+        public string FirstName { get; set; }
         [JsonIgnore]
-        public ICollection<Book> books { get; set; }
+        public ICollection<Book> Books { get; set; }
     }
 }

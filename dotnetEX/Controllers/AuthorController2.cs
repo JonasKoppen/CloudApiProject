@@ -51,8 +51,8 @@ namespace dotnetEx.Controllers
             if (orgAuthor == null)
                 return NotFound();
 
-            orgAuthor.name = updateAuthor.name;
-            orgAuthor.firstName = updateAuthor.firstName;
+            orgAuthor.Name = updateAuthor.Name;
+            orgAuthor.FirstName = updateAuthor.FirstName;
             context.SaveChanges();
             return Ok(orgAuthor);
         }
