@@ -9,9 +9,10 @@ namespace MarvelMoviesAPI.Controllers.Objects
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public int IMDBScore { get; set; }
-        //public List<Hero> Heroes { get; set; }
+        public float IMDBScore { get; set; }
+        public Hero Hero { get; set; }
+        public Villain Villain { get; set; }
         public int ReleaseYear { get; set; }
-        public string productionCompany { get; set; }
+        public string Director { get; set; } 
     }
 }

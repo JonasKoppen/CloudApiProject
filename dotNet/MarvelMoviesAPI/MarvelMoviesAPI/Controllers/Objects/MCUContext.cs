@@ -15,5 +15,6 @@ namespace MarvelMoviesAPI.Controllers.Objects
         public DbSet<Movie> MarvelMovies { get; set; }
 
         public DbSet<Hero> Heroes { get; set; }
+        public DbSet<Villain> Villains { get; set; }
     }
 }
