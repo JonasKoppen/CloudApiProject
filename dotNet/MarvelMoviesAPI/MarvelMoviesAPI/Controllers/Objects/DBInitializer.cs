@@ -11,31 +11,7 @@ namespace MarvelMoviesAPI.Controllers.Objects
         {
             context.Database.EnsureCreated();
 
-            if (!context.MarvelMovies.Any())
-            {
-                var mv = new Movie()
-                {
-                    Title = "Iron Man",
-                    ReleaseYear = 2008,
-                    Director = "Jon Favreau",
-                    IMDBScore = 7.9f,
-                    Hero = context.Heroes.Single(h => h.HeroName == "Tony Stark"),
-                    Villain = context.Villains.Single(v => v.Name == "Obadiah Stane")
-
-                };
-                context.MarvelMovies.Add(mv);
-                mv = new Movie()
-                {
-                    Title = "Iron Man 2",
-                    ReleaseYear = 2010,
-                    Director = "Jon Favreau",
-                    IMDBScore = 7.0f,
-                    Hero = context.Heroes.Single(h => h.HeroName == "Tony Stark"),
-                    Villain = context.Villains.Single(v => v.Name == "Ivan Vanko")
-                };
-                context.MarvelMovies.Add(mv);
-                context.SaveChanges();
-            }
+            
             if (!context.Heroes.Any())
             {
                 var hero = new Hero()
@@ -64,6 +40,31 @@ namespace MarvelMoviesAPI.Controllers.Objects
 
                 };
                 context.Villains.Add(villain);
+                context.SaveChanges();
+            }
+            if (!context.MarvelMovies.Any())
+            {
+                var mv = new Movie()
+                {
+                    Title = "Iron Man",
+                    ReleaseYear = 2008,
+                    Director = "Jon Favreau",
+                    IMDBScore = 7.9f,
+                    Hero = context.Heroes.Single(h => h.Id == 1),
+                    Villain = context.Villains.Single(v => v.Id == 1)
+
+                };
+                context.MarvelMovies.Add(mv);
+                mv = new Movie()
+                {
+                    Title = "Iron Man 2",
+                    ReleaseYear = 2010,
+                    Director = "Jon Favreau",
+                    IMDBScore = 7.0f,
+                    Hero = context.Heroes.Single(h => h.Id == 1),
+                    Villain = context.Villains.Single(v => v.Id == 2)
+                };
+                context.MarvelMovies.Add(mv);
                 context.SaveChanges();
             }
         }

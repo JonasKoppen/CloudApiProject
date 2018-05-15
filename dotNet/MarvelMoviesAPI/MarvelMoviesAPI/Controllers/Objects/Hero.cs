@@ -8,13 +8,8 @@ namespace MarvelMoviesAPI.Controllers.Objects
 {
     public class Hero: Character
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string HeroName { get; set; }
         //public List<String> Alias { get; set; }
-        public string Actor { get; set; }
-        [JsonIgnore]
-        public List<Movie> FeaturedMovies { get; set; }
 
     }
 }
