@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore;
 namespace MarvelMoviesAPI.Controllers
 {
     [Route("api/v1/character")]
-    public class CharacterController : Controller
+    public class HeroController : Controller
     {
         private readonly MCUContext context;
-        public CharacterController(MCUContext context)
+        public HeroController(MCUContext context)
         {
             this.context = context;
         }
