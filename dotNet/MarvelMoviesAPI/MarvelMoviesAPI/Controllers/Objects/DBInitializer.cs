@@ -10,7 +10,7 @@ namespace MarvelMoviesAPI.Controllers.Objects
         public static void Initialize(MCUContext context)
         {
             context.Database.EnsureCreated();
-
+            
             
             if (!context.Heroes.Any())
             {
@@ -19,7 +19,7 @@ namespace MarvelMoviesAPI.Controllers.Objects
                     Name = "Tony Stark",
                     HeroName = "Iron Man",
                     Actor = "Robert Downey Jr.",
-                    
+                    FeaturedMovies = context.MarvelMovies.Where(m => m.Hero.Name == "Tony Stark").ToList() //hero.id
                 };
                 context.Heroes.Add(hero);
                 context.SaveChanges();
