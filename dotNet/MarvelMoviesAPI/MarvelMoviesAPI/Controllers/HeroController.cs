@@ -20,10 +20,22 @@ namespace MarvelMoviesAPI.Controllers
         public List<Hero> GetCharacters()
         {
             var heroes = context.Heroes.Include(m => m.FeaturedMovies).ToList();
-            var vilains = context.Villains.Include(m => m.FeaturedMovie).ToList();
-            var chars = new List<Character>();
+            //var vilains = context.Villains.Include(m => m.FeaturedMovie).ToList();
             
             return heroes;
+        }
+        [HttpPut]
+        public IActionResult UpdateHero([FromBody] Hero updateHero)
+        {
+            var orgHero = context.Heroes.Find(updateHero.Id);
+            if (orgHero == null)
+                return NotFound();
+
+            orgHero.Name = updateHero.Name;
+            orgHero.HeroName = updateHero.HeroName;
+            orgHero.Actor = updateHero.Actor;
+            context.SaveChanges();
+            return Ok(orgHero);
         }
     }
 }
