@@ -18,7 +18,7 @@ namespace MarvelMoviesAPI.Controllers
         }
         
         [HttpGet]
-        public DataResult GetMovies(string title, int? phase, string sort, string dir = "asc")
+        public DataResultMovie GetMovies(string title, int? phase, string sort, string dir = "asc")
         {
             
             IQueryable<Movie> query = context.MarvelMovies;
@@ -62,14 +62,14 @@ namespace MarvelMoviesAPI.Controllers
                         break;
                 }
             }
-            var result = new DataResult()
+            var result = new DataResultMovie()
             {
-                count = query.Count(),
                 Data = query.Include(v => v.Villain).Include(h => h.Hero).ToList()
             };
 
             return result;
         }
+
         [Route("{id}")]   // api/v1/heroes/2
         [HttpGet]
         public IActionResult GetMovie(int id)
@@ -77,14 +77,20 @@ namespace MarvelMoviesAPI.Controllers
             var movie = context.MarvelMovies.Include(m => m.Hero).Include(m => m.Villain).SingleOrDefault(m => m.Id == id);
             if (movie == null)
                 return NotFound();
-            return Ok(movie);
+            var temp = new DataResultMovie()
+            {
+                Data = (new List<Movie>() { movie })
+            };
+            return Ok(temp);
         }
 
     }
 
-    public class DataResult
+    public class DataResultMovie
     {
-        public int count { get; set; }
+        public int count { get { return Data.Count(); } }
         public List<Movie> Data { get; set; }
     }
+
+
 }

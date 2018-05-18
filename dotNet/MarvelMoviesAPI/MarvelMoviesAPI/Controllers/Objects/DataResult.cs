@@ -5,8 +5,5 @@ using System.Threading.Tasks;
 
 namespace MarvelMoviesAPI.Controllers.Objects
 {
-    public class Data
-    {
 
-    }
 }

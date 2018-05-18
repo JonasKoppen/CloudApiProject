@@ -17,13 +17,59 @@ namespace MarvelMoviesAPI.Controllers
             this.context = context;
         }
         [HttpGet]
-        public List<Villain> GetVillaines()
+        public DataResultHero GetHeroes(string name, string heroName, int? phase, string sort, string dir = "asc")
         {
-            //var villaines = context.Villaines.ToList();
-            //var vilains = context.Villains.Include(m => m.FeaturedMovie).ToList();
+            IQueryable<Hero> query = context.Heroes;
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(h => h.Name == name);
+            if (!string.IsNullOrWhiteSpace(heroName))
+                query = query.Where(h => h.HeroName == heroName);
+            if (!string.IsNullOrWhiteSpace(sort))
+            {
+                switch (sort)
+                {
+                    case "Name":
+                        if (dir == "asc")
+                            query = query.OrderBy(h => h.Name);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(h => h.Name);
+                        break;
+                    case "Actor":
+                        if (dir == "asc")
+                            query = query.OrderBy(h => h.Actor);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(h => h.Actor);
+                        break;
+                    case "HeroName":
+                        if (dir == "asc")
+                            query = query.OrderBy(h => h.HeroName);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(h => h.HeroName);
+                        break;
+                }
+            }
+            var result = new DataResultHero()
+            {
+                Data = query.Include(h => h.FeaturedMovies).ToList()
+            };
 
-            return context.Villains.ToList();
+            return result;
         }
+
+        [Route("{id}")]   // api/v1/heroes/2
+        [HttpGet]
+        public IActionResult GetHero(int id)
+        {
+            var hero = context.Heroes.Include(h => h.FeaturedMovies).SingleOrDefault(h => h.Id == id);
+            if (hero == null)
+                return NotFound();
+            var temp = new DataResultHero()
+            {
+                Data = (new List<Hero>() { hero })
+            };
+            return Ok(temp);
+        }
+
         [HttpPut]
         public IActionResult UpdateVillain([FromBody] Villain updateVillain)
         {
@@ -35,16 +81,6 @@ namespace MarvelMoviesAPI.Controllers
             orgVillain.Actor = updateVillain.Actor;
             context.SaveChanges();
             return Ok(orgVillain);
-        }
-        [Route("{id}")]   // api/v1/villaines/2
-        [HttpGet]
-        public IActionResult GetVillain(int id)
-        {
-            var Villain = context.Villains.Find(id);
-            if (Villain == null)
-                return NotFound();
-
-            return Ok(Villain);
         }
 
         [Route("{id}/movies")]   // api/v1/movies/2
