@@ -18,7 +18,7 @@ namespace MarvelMoviesAPI.Controllers
         }
         
         [HttpGet]
-        public List<Movie> GetMovies(string title, int? phase, string sort, string dir = "asc")
+        public DataResult GetMovies(string title, int? phase, string sort, string dir = "asc")
         {
             
             IQueryable<Movie> query = context.MarvelMovies;
@@ -62,7 +62,13 @@ namespace MarvelMoviesAPI.Controllers
                         break;
                 }
             }
-            return query.Include(v => v.Villain).Include(h => h.Hero).ToList();
+            var result = new DataResult()
+            {
+                count = query.Count(),
+                Data = query.Include(v => v.Villain).Include(h => h.Hero).ToList()
+            };
+
+            return result;
         }
         [Route("{id}")]   // api/v1/heroes/2
         [HttpGet]
@@ -74,5 +80,11 @@ namespace MarvelMoviesAPI.Controllers
             return Ok(movie);
         }
 
+    }
+
+    public class DataResult
+    {
+        public int count { get; set; }
+        public List<Movie> Data { get; set; }
     }
 }
