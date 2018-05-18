@@ -84,6 +84,86 @@ namespace MarvelMoviesAPI.Controllers
             return Ok(temp);
         }
 
+        [Route("{id}/Hero")]   // api/v1/movies/2
+        [HttpGet]
+        public IActionResult GetHeroFromMovie(int id)
+        {
+            var movie = context.MarvelMovies
+                    .Include(d => d.Hero)
+                    .SingleOrDefault(d => d.Id == id);
+
+            if (movie == null)
+                return NotFound();
+
+            var result = new DataResultHero()
+            {
+                Data = new List<Hero>() { movie.Hero }
+            };
+            return Ok(result);
+        }
+
+        [Route("{id}/Villain")]   // api/v1/movies/2
+        [HttpGet]
+        public IActionResult GetVillainFromMovie(int id)
+        {
+            var movie = context.MarvelMovies
+                    .Include(d => d.Villain)
+                    .SingleOrDefault(d => d.Id == id);
+
+            if (movie == null)
+                return NotFound();
+
+            var result = new DataResultVillain()
+            {
+                Data = new List<Villain>() { movie.Villain }
+            };
+            return Ok(result);
+        }
+
+
+        [HttpPut]
+        public IActionResult UpdateMovie([FromBody] Movie updateMovie)
+        {
+            var orgMovie = context.MarvelMovies.Find(updateMovie.Id);
+            if (orgMovie == null)
+                return NotFound();
+
+            orgMovie.Title = updateMovie.Title;
+            orgMovie.IMDBScore = updateMovie.IMDBScore;
+            orgMovie.Hero = updateMovie.Hero;
+            orgMovie.Villain = updateMovie.Villain;
+            orgMovie.ReleaseYear = updateMovie.ReleaseYear;
+            orgMovie.Director= updateMovie.Director;
+            context.SaveChanges();
+            return Ok(orgMovie);
+        }
+
+
+        [HttpPost]
+        public IActionResult CreateMovie([FromBody] Movie newMovie)
+        {
+            //Movie toevoegen in de databank, Id wordt dan ook toegekend
+            context.MarvelMovies.Add(newMovie);
+            context.SaveChanges();
+            // Stuur een result 201 met het boek als content
+            return Created("", newMovie);
+        }
+
+        [Route("{id}")]
+        [HttpDelete]
+        public IActionResult DeleteMovie(int id)
+        {
+            var Movie = context.MarvelMovies.Find(id);
+            if (Movie == null)
+                return NotFound();
+
+            //Movie verwijderen ..
+            context.MarvelMovies.Remove(Movie);
+            context.SaveChanges();
+            //Standaard response 204 bij een gelukte delete
+            return NoContent();
+        }
+
     }
 
     public class DataResultMovie
