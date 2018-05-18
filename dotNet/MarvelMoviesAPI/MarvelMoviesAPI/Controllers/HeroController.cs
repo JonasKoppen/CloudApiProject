@@ -18,7 +18,7 @@ namespace MarvelMoviesAPI.Controllers
         }
 
         [HttpGet]
-        public DataResultHero GetHeroes(string name, string heroName, int? phase, string sort, string dir = "asc")
+        public DataResultHero GetHeroes(string name, string heroName, string sort, string dir = "asc")
         {
             IQueryable<Hero> query = context.Heroes;
             if (!string.IsNullOrWhiteSpace(name))
