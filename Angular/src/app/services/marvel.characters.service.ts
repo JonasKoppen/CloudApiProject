@@ -43,14 +43,6 @@ export class CharacterService {
         return this._http.get<character>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
-
-
-
-    getCurrentWeatherAt(location:string) : Observable<character>
-    {
-        return this._http.get<character>(`http://api.openweathermap.org/data/2.5/weather?q=${location}&lang=nl&APPID=c29dbdf3ccc2d57a361ceaeac49d9e53`)
-        // .do(data => console.log(JSON.stringify(data)));
-    }
 }
 
 export interface Thumbnail {
