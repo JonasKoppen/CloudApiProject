@@ -14,20 +14,20 @@ export class MoviesService {
 
     constructor(private _http: HttpClient) {}
 
-    getMovies() : Observable<Movies>
+    getMovies() : Observable<Root>
     {
         console.log("requesting:")
-        var req = 'http://localhost:5050/api/v1/movie/1';
+        var req = 'http://localhost:5050/api/v1/movie';
         console.log(req);
-        return this._http.get<Movies>(req)
-        //.do(data => console.log(JSON.stringify(data)));
+        return this._http.get<Root>(req)
+        .do(data => console.log(JSON.stringify(data)));
     }
 
-    getMoviesById(id) : Observable<Movies>
+    getMoviesById(id) : Observable<Root>
     {
         var req = 'http://localhost:5050/api/v1/movie/'+ id;
         console.log(req);
-        return this._http.get<Movies>(req)
+        return this._http.get<Root>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 }
@@ -45,7 +45,7 @@ export interface Villain {
     actor: string;
 }
 
-export interface Movies {
+export interface Movie {
     id: number;
     title: string;
     imdbScore: number;
@@ -53,6 +53,10 @@ export interface Movies {
     villain: Villain;
     releaseYear: number;
     director: string;
+}
+
+export interface Root {
+    movies : Movie
 }
 
 
