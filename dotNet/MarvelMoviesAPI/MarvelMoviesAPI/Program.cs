@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -17,10 +18,20 @@ namespace MarvelMoviesAPI
             BuildWebHost(args).Run();
         }
 
+
+        
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                //.UseConfiguration(config)
+                .UseKestrel(options =>
+                {                   
+                    options.Listen(IPAddress.Loopback, 5000);
+                })
+                .UseUrls("http://0.0.0.0:5000", "http://localhost:5000")
+                ///.UseUrls("http://0.0.0.0:5000;http://localhost:5000") also works
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://localhost:5050")
                 .Build();
     }
 }
