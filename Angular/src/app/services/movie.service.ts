@@ -14,19 +14,18 @@ export class MoviesService {
 
     constructor(private _http: HttpClient) {}
 
-    getCharacterUnknown() : Observable<Movies>
+    getMovies() : Observable<Movies>
     {
-        var limit = 10;
-        var offset = Math.round(Math.random()*(this.totalChars - limit))
-        var req = 'https://gateway.marvel.com/v1/public/characters?';
+        console.log("requesting:")
+        var req = 'http://localhost:5050/api/v1/movie/1';
         console.log(req);
         return this._http.get<Movies>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    getCharacterSpecific(name) : Observable<Movies>
+    getMoviesById(id) : Observable<Movies>
     {
-        var req = 'https://gateway.marvel.com/v1/public/characters?name=';
+        var req = 'http://localhost:5050/api/v1/movie/'+ id;
         console.log(req);
         return this._http.get<Movies>(req)
         //.do(data => console.log(JSON.stringify(data)));

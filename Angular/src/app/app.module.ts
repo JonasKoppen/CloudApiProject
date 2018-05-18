@@ -13,6 +13,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { RouterModule } from '@angular/router';
 import { CharacterListComponent } from './charList/characterList.component';
+import { MovieComponent } from './movie/movie.component';
+import { MoviesService } from './services/movie.service';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { CharacterListComponent } from './charList/characterList.component';
     TestModule,
     HomeComponent,
     WelcomeComponent,
-    CharacterListComponent
+    CharacterListComponent,
+
+    MovieComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { CharacterListComponent } from './charList/characterList.component';
     RouterModule.forRoot([
       {path: "home", component : HomeComponent},
       {path: "list", component : CharacterListComponent},
+      {path: "movie", component : MovieComponent},
       {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},
       {path : "**", redirectTo: "404"}
@@ -42,6 +47,7 @@ import { CharacterListComponent } from './charList/characterList.component';
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     CharacterService,
+    MoviesService
   ],
   bootstrap: [AppComponent]
 })
