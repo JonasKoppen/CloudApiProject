@@ -13,7 +13,7 @@ namespace MarvelMoviesAPI.Controllers.Objects
         public string Actor { get; set; }
         public string HeroName { get; set; }
         //public List<String> Alias { get; set; }
-        //[JsonIgnore]
+        [JsonIgnore]
         public ICollection<Movie> FeaturedMovies { get; set; }
 
     }

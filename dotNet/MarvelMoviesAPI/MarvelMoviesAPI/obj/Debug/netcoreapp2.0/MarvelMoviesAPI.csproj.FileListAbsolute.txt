@@ -8,3 +8,4 @@ C:\Users\jonas\Documents\CloudAPI\CloudApiProject\dotNet\MarvelMoviesAPI\MarvelM
 C:\Users\jonas\Documents\CloudAPI\CloudApiProject\dotNet\MarvelMoviesAPI\MarvelMoviesAPI\obj\Debug\netcoreapp2.0\MarvelMoviesAPI.AssemblyInfo.cs
 C:\Users\jonas\Documents\CloudAPI\CloudApiProject\dotNet\MarvelMoviesAPI\MarvelMoviesAPI\obj\Debug\netcoreapp2.0\MarvelMoviesAPI.dll
 C:\Users\jonas\Documents\CloudAPI\CloudApiProject\dotNet\MarvelMoviesAPI\MarvelMoviesAPI\obj\Debug\netcoreapp2.0\MarvelMoviesAPI.pdb
+C:\Users\jonas\Documents\CloudAPI\CloudApiProject\dotNet\MarvelMoviesAPI\MarvelMoviesAPI\obj\Debug\netcoreapp2.0\MarvelMoviesAPI.csprojResolveAssemblyReference.cache
