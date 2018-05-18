@@ -39,6 +39,11 @@ namespace MarvelMoviesAPI.Controllers.Objects
                     {
                         Name = "Ivan Vanko",
                         Actor = "Mickey Rourke",
+                    },
+                    new Villain()
+                    {
+                        Name = "Aldrich Killian",
+                        Actor = "Guy Pearce",
                     }
                 };
                 foreach (Villain v in villains)
@@ -53,7 +58,9 @@ namespace MarvelMoviesAPI.Controllers.Objects
                     Director = "Jon Favreau",
                     IMDBScore = 7.9f,
                     Hero = heroes[0],
-                    Villain = villains[0]
+                    Villain = villains[0],
+                    Phase = 1,
+                    TimeLineOrder = 2
                 };
                 context.MarvelMovies.Add(mv);
                 mv = new Movie()
@@ -63,7 +70,21 @@ namespace MarvelMoviesAPI.Controllers.Objects
                     Director = "Jon Favreau",
                     IMDBScore = 7.0f,
                     Hero = heroes[0],
-                    Villain = villains[1]
+                    Villain = villains[1],
+                    Phase = 1,
+                    TimeLineOrder = 3
+                };
+                context.MarvelMovies.Add(mv);
+                mv = new Movie()
+                {
+                    Title = "Iron Man 3",
+                    ReleaseYear = 2013,
+                    Director = "Shane Black",
+                    IMDBScore = 7.2f,
+                    Hero = heroes[0],
+                    Villain = villains[2],
+                    Phase = 2,
+                    TimeLineOrder = 7
                 };
                 context.MarvelMovies.Add(mv);
                 context.SaveChanges();
