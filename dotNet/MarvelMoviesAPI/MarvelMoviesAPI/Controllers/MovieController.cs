@@ -64,6 +64,15 @@ namespace MarvelMoviesAPI.Controllers
             }
             return query.Include(v => v.Villain).Include(h => h.Hero).ToList();
         }
-   
+        [Route("{id}")]   // api/v1/heroes/2
+        [HttpGet]
+        public IActionResult GetMovie(int id)
+        {
+            var movie = context.MarvelMovies.Include(m => m.Hero).Include(m => m.Villain).SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+                return NotFound();
+            return Ok(movie);
+        }
+
     }
 }
