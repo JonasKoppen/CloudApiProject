@@ -40,7 +40,8 @@ namespace MarvelMoviesAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseMvc();
             DBInitializer.Initialize(marvelCinemaContext);
         }
