@@ -77,11 +77,13 @@ namespace MarvelMoviesAPI.Controllers
             var movie = context.MarvelMovies.Include(m => m.Hero).Include(m => m.Villain).SingleOrDefault(m => m.Id == id);
             if (movie == null)
                 return NotFound();
+            /*
             var temp = new DataResultMovie()
             {
                 Data = (new List<Movie>() { movie })
             };
-            return Ok(temp);
+            */
+            return Ok(movie);
         }
 
         [Route("{id}/Hero")]   // api/v1/movies/2

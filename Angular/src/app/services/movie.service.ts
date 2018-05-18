@@ -23,29 +23,20 @@ export class MoviesService {
         .do(data => console.log(JSON.stringify(data)));
     }
 
-    getMoviesById(id) : Observable<Root>
+    getMoviesById(id) : Observable<Movie>
     {
         var req = 'http://localhost:5050/api/v1/movie/'+ id;
         console.log(req);
-        return this._http.get<Root>(req)
+        return this._http.get<Movie>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 }
-
-export interface Hero {
-    id: number;
-    name: string;
-    actor: string;
-    heroName: string;
-}
-
-export interface Villain {
-    id: number;
-    name: string;
-    actor: string;
-}
-
-export interface Movie {
+interface Root {
+    count: number;
+    data: Movie[];
+  }
+  
+  interface Movie {
     id: number;
     title: string;
     imdbScore: number;
@@ -53,11 +44,25 @@ export interface Movie {
     villain: Villain;
     releaseYear: number;
     director: string;
-}
+    phase: number;
+    timeLineOrder: number;
+  }
+  
+  interface Villain {
+    id: number;
+    name: string;
+    actor: string;
+  }
+  
+  interface Hero {
+    id: number;
+    name: string;
+    actor: string;
+    heroName: string;
+  }
 
-export interface Root {
-    movies : Movie
-}
+
+
 
 
 
