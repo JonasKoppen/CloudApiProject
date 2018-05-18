@@ -5,42 +5,30 @@ import {Md5} from 'ts-md5/dist/md5';
 
 
 @Injectable()
-export class CharacterService {
+export class MoviesService {
     apikey = "acdb5b6c98e4a5408e05093f4d0f6de4";
     privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
     timeStamp: number;
     totalChars = 1491;
     
 
-    getTimestamp(): number{
-        return (Date.now()/1000)
-    }
-
-    createHash(): string{
-        this.timeStamp = this.getTimestamp()
-        var prehash : string 
-        prehash = this.timeStamp.toString() + this.privateKey + this.apikey
-        return Md5.hashStr(prehash).toString()
-    }
     constructor(private _http: HttpClient) {}
 
-    getCharacterUnknown() : Observable<character>
+    getCharacterUnknown() : Observable<Movies>
     {
         var limit = 10;
         var offset = Math.round(Math.random()*(this.totalChars - limit))
-        var myHash = this.createHash();
-        var req = 'https://gateway.marvel.com/v1/public/characters?'+'limit='+limit + '&offset='+offset+'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var req = 'https://gateway.marvel.com/v1/public/characters?';
         console.log(req);
-        return this._http.get<character>(req)
+        return this._http.get<Movies>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    getCharacterSpecific(name) : Observable<character>
+    getCharacterSpecific(name) : Observable<Movies>
     {
-        var myHash = this.createHash();
-        var req = 'https://gateway.marvel.com/v1/public/characters?name='+ name +'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var req = 'https://gateway.marvel.com/v1/public/characters?name=';
         console.log(req);
-        return this._http.get<character>(req)
+        return this._http.get<Movies>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 }
