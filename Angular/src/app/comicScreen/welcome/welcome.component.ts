@@ -16,7 +16,7 @@ export class WelcomeComponent implements OnInit{
     }
 
     ngOnInit(){
-        this._svc.getCharacterUnknown()
+        this._svc.getCharacterUnknown(0,0)
               .subscribe(result => this.characters = result.data.results);
     }
 }

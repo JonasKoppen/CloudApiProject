@@ -10,11 +10,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { RouterModule } from '@angular/router';
 import { MoviesService } from './services/movie.service';
-import { TestModule } from './comicScreen/test-module/test.module';
-import { HomeComponent } from './comicScreen/home/home.component';
 import { WelcomeComponent } from './comicScreen/welcome/welcome.component';
 import { CharacterListComponent } from './comicScreen/charList/characterList.component';
 import { MovieComponent } from './MovieScreen/movie/movie.component';
+import { CharProfileModule } from './comicScreen/charProfile-module/charProfile.component';
+import { HomeComponent } from './welcomeScreen/home/home.component';
 
 
 @NgModule({
@@ -23,7 +23,7 @@ import { MovieComponent } from './MovieScreen/movie/movie.component';
     NavbarComponent,
     PageNotFoundComponent,
 
-    TestModule,
+    CharProfileModule,
     HomeComponent,
     WelcomeComponent,
     CharacterListComponent,

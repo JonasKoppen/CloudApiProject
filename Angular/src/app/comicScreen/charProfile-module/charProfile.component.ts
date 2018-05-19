@@ -5,10 +5,11 @@ import { CharacterService , character, Result} from '../../services/marvel.chara
 //import { ThrowStmt } from '@angular/compiler';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.module.html'
+  selector: 'app-charProfile',
+  templateUrl: './charProfile.component.html',
+  styleUrls: ['./charProfile.component.scss']
 })
-export class TestModule implements OnInit {
+export class CharProfileModule implements OnInit {
   nameCharReq: string
   imageUrl : string;
   character: character;
@@ -19,7 +20,7 @@ export class TestModule implements OnInit {
   }
 
   ngOnInit() {
-    this._svc.getCharacterSpecific(this._search)
+    this._svc.findCharacterByName(this._search)
           .subscribe(result => this.character = result);
     setInterval(this.ChangeImage , 1000);
     this.GetAllChar()
@@ -42,7 +43,7 @@ export class TestModule implements OnInit {
   set CharReq(name : string){
     console.log(name)
     this._search = name;
-    this._svc.getCharacterSpecific(this._search)
+    this._svc.findCharacterByName(this._search)
           .subscribe(result => this.character = result);
   }
 
