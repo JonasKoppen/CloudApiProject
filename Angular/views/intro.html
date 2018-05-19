@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Material Design Bootstrap</title>
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/mdb/css/bootstrap.css" rel="stylesheet">
+    <link href="vendor/mdb/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/mdb/css/mdb.css" rel="stylesheet">
+    <link href="vendor/mdb/css/mdb.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -14,6 +18,8 @@
 
     <!-- Custom styles for this template -->
     <link href="css/intro.css" rel="stylesheet">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </head>
 
 <body>
@@ -23,7 +29,7 @@
     <!-- Full Page Intro -->
     <div class="view" >
       <!-- Mask & flexbox options-->
-      <div class="mask rgba-indigo-strong d-flex justify-content-center align-items-center">
+      <div class="mask  d-flex justify-content-center align-items-center">
         <!-- Content -->
         <div class="container">
           <!--Grid row-->
@@ -34,32 +40,22 @@
               <hr class="hr-light">
               <h6 class="mb-3 secondary-text">De Marvel commic and cinematic universe Library</h6>
               <a class="btn btn-outline-white secondary-text">ALFA</a>
+              <form action="/googlelogin" method="GET">
+                    <button type="submit" class="btn blue-gradient btn-outline-danger  third-text" value="Login"> Login with google
+                    <i class="fab fa-google"></i>
+                    </button>
+              </form>
             </div>
             <!--Grid column-->
             <!--Grid column-->
-            <div class="col-md-6 col-xl-5 mb-4">
-              <!--Form-->
-              <div class="card wow fadeInRight" data-wow-delay="0.3s">
-                <div class="card-body z-depth-2">
-                    <!--Header-->
-                    <div class="text-center">
-                        <h3>Login</h3>
-                        <hr>
-                    </div>
+            
 
                     <!--Body-->
-                    <form action="/googlelogin" method="GET">
-                        <div style="width: 100%; text-align: center;">
-                            <input type="submit" style="margin-top: 20%;" value="Login"> with google
-                            <i class="fab fa-google"></i>
-                        </div>
-                    </form>
+
 
                     <!--Textarea with icon prefix-->
                    
 
-                </div>
-            </div>
               <!--/.Form-->
             </div>
             <!--Grid column-->
@@ -73,4 +69,6 @@
     <!-- Full Page Intro -->
   </header>
   <!-- Main navigation -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
