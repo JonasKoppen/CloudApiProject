@@ -23,8 +23,7 @@ const profile = `<!DOCTYPE html>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    
 </head>
 <body>
     <br/>
@@ -32,6 +31,8 @@ const profile = `<!DOCTYPE html>
     Hallo {username}, 
     <br/>
     <img src="{photo}" style="max-height:200px;" alt="">
+    <br/>
+    {{info | json}}
 </body>
 </html>`
 
@@ -62,6 +63,7 @@ server.get('/profile', (req, res, next) => {
             }
             , (error, resp, body) => {
                 var info = JSON.parse(body);
+                console.log(info)
                 //send profile page after setting name and photo
                 res.write(profile.replace("{username}", info.name).replace("{photo}", info.picture));
                 res.end();
