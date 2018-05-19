@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace MarvelMoviesAPI.Controllers.Objects
 {
-    public class Hero: Character
+    public class Hero
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Actor { get; set; }
         public string HeroName { get; set; }
         //public List<String> Alias { get; set; }
-        public string Actor { get; set; }
         [JsonIgnore]
-        public List<Movie> FeaturedMovies { get; set; }
+        public ICollection<Movie> FeaturedMovies { get; set; }
 
     }
 }

@@ -24,32 +24,54 @@ export class CharacterService {
     }
     constructor(private _http: HttpClient) {}
 
-    getCharacterUnknown() : Observable<character>
+    getCharacterUnknown(name?,orderBy?,limit?, offset?) : Observable<character>
     {
-        var limit = 10;
-        var offset = Math.round(Math.random()*(this.totalChars - limit))
+        var request = ""
+        if(name)
+        {
+            request += 'nameStartsWith='+ name + '&'
+        }
+        if(orderBy)
+        {
+            request += "orderBy="+orderBy+"&"
+        }
+        if(limit > 0 && limit < 100)
+        {
+            request += 'limit='+limit+'&'
+        }
+        if(offset > 0)
+        {
+            if(offset < 0 || offset > (limit + this.totalChars))
+            {
+                offset = 0;
+                
+            }
+            request += 'offset='+offset+'&'
+        }
+        
         var myHash = this.createHash();
-        var req = 'https://gateway.marvel.com/v1/public/characters?'+'limit='+limit + '&offset='+offset+'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var req = 'https://gateway.marvel.com/v1/public/characters?'+ request +'ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
         console.log(req);
         return this._http.get<character>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    getCharacterSpecific(name) : Observable<character>
+    findCharacterByName(name) : Observable<character>
     {
         var myHash = this.createHash();
-        var req = 'https://gateway.marvel.com/v1/public/characters?name='+ name +'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var req = 'https://gateway.marvel.com/v1/public/characters?nameStartsWith='+ name +'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
         console.log(req);
         return this._http.get<character>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-
-
-    getCurrentWeatherAt(location:string) : Observable<character>
+    findCharacterById(id) : Observable<character>
     {
-        return this._http.get<character>(`http://api.openweathermap.org/data/2.5/weather?q=${location}&lang=nl&APPID=c29dbdf3ccc2d57a361ceaeac49d9e53`)
-        // .do(data => console.log(JSON.stringify(data)));
+        var myHash = this.createHash();
+        var req = 'https://gateway.marvel.com/v1/public/characters/'+ id +'?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        console.log(req);
+        return this._http.get<character>(req)
+        //.do(data => console.log(JSON.stringify(data)));
     }
 }
 
@@ -116,7 +138,7 @@ export interface Result {
     id: number;
     name: string;
     description: string;
-    modified: Date;
+    modified: string; //Date
     thumbnail: Thumbnail;
     resourceURI: string;
     comics: Comics;

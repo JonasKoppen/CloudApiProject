@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MarvelMoviesAPI.Controllers.Objects
 {
-    interface Character
+    public class Character
     {
-        int Id { get; set; }
-        string Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Actor { get; set; }
+        [JsonIgnore]
+        public List<Movie> FeaturedMovies { get; set; }
     }
 }

@@ -3,16 +3,18 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
-import { TestModule } from './test-module/test.module';
 import { CharacterService } from './services/marvel.characters.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { RouterModule } from '@angular/router';
-import { CharacterListComponent } from './charList/characterList.component';
+import { MoviesService } from './services/movie.service';
+import { WelcomeComponent } from './comicScreen/welcome/welcome.component';
+import { CharacterListComponent } from './comicScreen/charList/characterList.component';
+import { MovieComponent } from './MovieScreen/movie/movie.component';
+import { CharProfileModule } from './comicScreen/charProfile-module/charProfile.component';
+import { HomeComponent } from './welcomeScreen/home/home.component';
 
 
 @NgModule({
@@ -21,10 +23,12 @@ import { CharacterListComponent } from './charList/characterList.component';
     NavbarComponent,
     PageNotFoundComponent,
 
-    TestModule,
+    CharProfileModule,
     HomeComponent,
     WelcomeComponent,
-    CharacterListComponent
+    CharacterListComponent,
+
+    MovieComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { CharacterListComponent } from './charList/characterList.component';
     RouterModule.forRoot([
       {path: "home", component : HomeComponent},
       {path: "list", component : CharacterListComponent},
+      {path: "movie", component : MovieComponent},
       {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},
       {path : "**", redirectTo: "404"}
@@ -42,6 +47,7 @@ import { CharacterListComponent } from './charList/characterList.component';
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     CharacterService,
+    MoviesService
   ],
   bootstrap: [AppComponent]
 })

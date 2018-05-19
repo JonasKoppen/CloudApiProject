@@ -1,0 +1,50 @@
+<br>
+<div class="container">
+        <div class="row">
+                <div class="col-sm-6">
+                        <div class="card" *ngIf="character">
+                                <div class="card-header">
+                                    {{character.name}}
+                                </div>
+                                <div class="card-block">
+                                        <img class="img-fluid" [src]="imageUrl" alt="No image" >
+                                </div>
+                            </div>
+                </div>
+                <div class="col-sm-4 text-align:center">
+    <div class="card" style="margin:0">
+        <div class="card-header" style="text-align:center">
+            <h1>Characters</h1>
+        </div>
+        <div class="card-block" >
+            <table clas="table table-hover">
+                <thead>
+                    <div class="column">
+                        <input type="text" class = "form-control" [(ngModel)]="CharName">
+                        <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "sortBy" (click)="btnClick()"></a>
+                        <select class="form-control" [(ngModel)]="SetLimit">
+                            <option *ngFor = "let i of limit" value="{{i}}">{{i}}</option>
+                        </select>
+                    </div>
+                    <tr class="blue-grey lighten-4">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let char of characters" mdbWavesEffect (click)="pressChar(char.id)">
+                    <th>{{char.id}}</th>
+                    <td>{{char.name}}</td>
+                    <td><img class="img-fluid" src="{{char.thumbnail.path}}.{{char.thumbnail.extension}}" alt="No image"></td>
+                </tr>
+                </tbody>
+                <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
+                <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
+                
+            </table>
+    </div>    
+</div>
+</div>
+    </div>
+</div>
