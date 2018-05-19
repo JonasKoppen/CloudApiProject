@@ -3,7 +3,7 @@ const request = require('request')
 const cookie = require('cookie-parser')
 // const bp = require('body-parser')
 
-const hostname = '127.0.0.1';
+const hostname = 'localhost';
 const port = 3005;
 
 const server = ex();
@@ -11,8 +11,8 @@ const server = ex();
 let expRouter = ex.Router();
 
 const clientID = '93265941175-95jhhhon6rc0upbl3ta24lj9bcsbvks9.apps.googleusercontent.com'
-const secret = '6CwHKDQyyXicYw80eNeJhD4f'
-const redirectUrl = 'http%3A%2F%2Flocalhost%3A8002%2Fgoogle-callback'
+const secret = '34w3qXLD3f3GntmQ1s1IVOYQ'
+const redirectUrl = `http%3A%2F%2Flocalhost%3A${port}%2Fgoogle-callback`
 
 //profiel pagina. 
 //Er wordt eerst de naam en foto in geplaatst vooraleer deze wordt teruggestuurd naar de browser
@@ -36,28 +36,16 @@ const profile = `<!DOCTYPE html>
 </html>`
 
 server.use(cookie());
-server.use('/assets', ex.static(__dirname+'/dist/src/app/assets'));
-//server.use('/login', ex.static(__dirname+'/dist/src/app/introScreen/intro/'));
 
-
-server.use('/login', function(req, res){
-    res.sendFile(__dirname + '/src/app/introScreen/intro/intro.component.html');
-  });
-  
-//get root of the website
 server.get('/', (req, res, next) => {
     var cookie = req.cookies.auth;
     //if no cookie, then redirect to Login page
-
     if (!cookie) {
-        res.redirect('/login');
-        return;
+        res.redirect("intro.html")
     }
     else
         return next();
 })
-
-server.use(ex.static(__dirname + '/dist'));
 
 
 //show profile page with Google info
@@ -107,7 +95,7 @@ server.get("/google-callback", (req, res, next) => {
             //store the token in a cookie
             accesstoken = JSON.parse(body).access_token;
             res.cookie('auth', accesstoken, { maxAge: 60000 });
-            res.redirect("http://localhost:8002/#/home", )
+            res.redirect(`http://${hostname}:${port}/#/home`, )
         }
         else
             res.writable("An error occured with googleapis")
@@ -120,6 +108,10 @@ server.get('/logout', (req, res) => {
     res.redirect("/");
 })
 
+server.use(ex.static("views"));
+server.use(ex.static("public"));
+server.use(ex.static(__dirname + '/dist'));
+server.use('/assets', ex.static(__dirname+'/dist/src/app/assets'));
 
 
 
