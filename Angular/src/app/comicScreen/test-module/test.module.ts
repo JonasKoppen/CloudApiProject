@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import {Http, Response} from '@angular/http';
 import {Md5} from 'ts-md5/dist/md5';
-import { CharacterService, character, Result } from '../services/marvel.characters.service';
+import { CharacterService , character, Result} from '../../services/marvel.characters.service';
 //import { ThrowStmt } from '@angular/compiler';
 
 @Component({

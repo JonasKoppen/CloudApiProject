@@ -31,12 +31,12 @@ export class MoviesService {
         //.do(data => console.log(JSON.stringify(data)));
     }
 }
-interface Root {
+export interface Root {
     count: number;
     data: Movie[];
   }
   
-  interface Movie {
+  export  interface Movie {
     id: number;
     title: string;
     imdbScore: number;
@@ -48,13 +48,13 @@ interface Root {
     timeLineOrder: number;
   }
   
-  interface Villain {
+  export interface Villain {
     id: number;
     name: string;
     actor: string;
   }
   
-  interface Hero {
+  export interface Hero {
     id: number;
     name: string;
     actor: string;

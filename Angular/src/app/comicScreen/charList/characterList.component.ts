@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { debug } from 'util';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { validateConfig } from '@angular/router/src/config';
-import { Result, CharacterService } from '../services/marvel.characters.service';
+import { Result, CharacterService } from '../../services/marvel.characters.service';
 
 
 @Component({
