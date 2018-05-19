@@ -15,7 +15,6 @@ import { HomeComponent } from './comicScreen/home/home.component';
 import { WelcomeComponent } from './comicScreen/welcome/welcome.component';
 import { CharacterListComponent } from './comicScreen/charList/characterList.component';
 import { MovieComponent } from './MovieScreen/movie/movie.component';
-import { IntroComponent } from './introScreen/Intro/intro.component';
 
 
 @NgModule({
@@ -23,8 +22,6 @@ import { IntroComponent } from './introScreen/Intro/intro.component';
     AppComponent,
     NavbarComponent,
     PageNotFoundComponent,
-
-    IntroComponent,
 
     TestModule,
     HomeComponent,
@@ -39,7 +36,6 @@ import { IntroComponent } from './introScreen/Intro/intro.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: "intro", component : IntroComponent},
       {path: "home", component : HomeComponent},
       {path: "list", component : CharacterListComponent},
       {path: "movie", component : MovieComponent},
