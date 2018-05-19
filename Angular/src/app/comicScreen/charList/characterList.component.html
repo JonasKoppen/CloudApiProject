@@ -1,5 +1,17 @@
 <br>
 <div class="container">
+        <div class="row">
+                <div class="col-sm-6">
+                        <div class="card" *ngIf="character">
+                                <div class="card-header">
+                                    {{character.name}}
+                                </div>
+                                <div class="card-block">
+                                        <img class="img-fluid" [src]="imageUrl" alt="No image" >
+                                </div>
+                            </div>
+                </div>
+                <div class="col-sm-4 text-align:center">
     <div class="card" style="margin:0">
         <div class="card-header" style="text-align:center">
             <h1>Characters</h1>
@@ -21,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let char of characters" >
+                <tr *ngFor="let char of characters" mdbWavesEffect (click)="pressChar(char.id)">
                     <th>{{char.id}}</th>
                     <td>{{char.name}}</td>
                     <td><img class="img-fluid" src="{{char.thumbnail.path}}.{{char.thumbnail.extension}}" alt="No image"></td>
@@ -31,6 +43,8 @@
                 <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
                 
             </table>
-        </div>
+    </div>    
+</div>
+</div>
     </div>
 </div>

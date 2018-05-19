@@ -14,13 +14,31 @@ export class MoviesService {
 
     constructor(private _http: HttpClient) {}
 
-    getMovies() : Observable<Root>
+    getMovies(title?,phase?,sort?,dir?) : Observable<Root>
     {
+        var request = ""
+        if(title)
+        {
+            request += 'title='+ title + '&'
+        }
+        if(phase)
+        {
+            request += 'phase='+ phase + '&'
+        }
+        if(sort)
+        {
+            request += 'sort='+ sort + '&'
+        }
+        if(dir)
+        {
+            request += 'dir='+ dir + '&'
+        }
+        request = request.substring(0,request.length-1)
         console.log("requesting:")
-        var req = 'http://localhost:5050/api/v1/movie';
+        var req = 'http://localhost:5050/api/v1/movie?'+request;
         console.log(req);
         return this._http.get<Root>(req)
-        .do(data => console.log(JSON.stringify(data)));
+        //.do(data => console.log(JSON.stringify(data)));
     }
 
     getMoviesById(id) : Observable<Movie>
