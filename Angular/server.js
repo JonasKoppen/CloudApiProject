@@ -37,11 +37,11 @@ const profile = `<!DOCTYPE html>
 
 server.use(cookie());
 server.use('/assets', ex.static(__dirname+'/dist/src/app/assets'));
-app.use(express.static('public'));
-app.use(express.static('./dist/client'));
+//server.use('/login', ex.static(__dirname+'/dist/src/app/introScreen/intro/'));
 
-app.use('/login', function(req, res){
-    res.sendFile(__dirname + '/public/intro.html');
+
+server.use('/login', function(req, res){
+    res.sendFile(__dirname + '/src/app/introScreen/intro/intro.component.html');
   });
   
 //get root of the website
