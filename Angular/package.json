@@ -2,7 +2,6 @@
   "name": "cloud-api-project",
   "version": "0.1.0",
   "license": "MIT",
-  "main": "server.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
