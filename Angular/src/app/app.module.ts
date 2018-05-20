@@ -15,6 +15,7 @@ import { CharacterListComponent } from './comicScreen/charList/characterList.com
 import { MovieComponent } from './MovieScreen/movie/movie.component';
 import { CharProfileModule } from './comicScreen/charProfile-module/charProfile.component';
 import { HomeComponent } from './welcomeScreen/home/home.component';
+import { IntroComponent } from './introScreen/Intro/intro.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { HomeComponent } from './welcomeScreen/home/home.component';
     WelcomeComponent,
     CharacterListComponent,
 
-    MovieComponent
+    MovieComponent,
+    IntroComponent
   ],
   imports: [
     BrowserModule,

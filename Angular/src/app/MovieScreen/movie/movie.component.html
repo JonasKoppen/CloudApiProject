@@ -1,64 +1,72 @@
-<br>
-<div class="container">
+<section class="view intro-2">
+    <br>
+    <br>
+    <div class="container">
         <div class="row">
-                <div class="col-sm-6">
-                        <div class="card" *ngIf="movie">
-                                <div class="card-header">
-                                    <h1>{{movie.title}}</h1>
-                                </div>
-                                <div class="card-block">
-                                        IMDBScore: {{movie.imdbScore}}
-                                        <br>
-                                        Hero: {{movie.hero.herName }}
-                                        <br>
-                                        Villain: {{movie.villain.name}}
-                                        <br>
-                                        Release Year: {{movie.releaseYear}}
-                                        <br>
-                                        Director: {{movie.director}}
-                                        <br>
-                                        MCU Phase: {{movie.phase}}
-                                        <br>
-                                        Watchorder nr: {{movie.timeLineOrder}}
-                                        <br>
-                                </div>
+            <div class="col-sm-6">
+                    <div class="card text-center" *ngIf="movie">
+                        <div class="card-header">
+                            <h4 class="card-title"><strong>{{movie.title}}</strong></h4>
+                        </div>
+                        <div class="card-block">
+                            <div class="card-text">
+                                <table class="table table-striped">
+                                    <tbody>
+                                            <tr><th>IMDBScore:</th><th>{{movie.imdbScore}}</th></tr>
+
+                                    <tr><th>Hero:</th><th>{{movie.hero.heroName }}</th></tr>
+
+                                    <tr><th>Villain:</th><th> {{movie.villain.name}}</th></tr>
+
+                                    <tr><th>Release Year:</th><th> {{movie.releaseYear}}</th></tr>
+
+                                    <tr><th>Director:</th><th> {{movie.director}}</th></tr>
+
+                                    <tr><th>MCU Phase:</th><th> {{movie.phase}}</th></tr>
+
+                                    <tr><th>Watchorder nr:</th><th>{{movie.timeLineOrder}}</th></tr>
+
+                                    </tbody>
+                                </table>
                             </div>
-                </div>
-                <div class="col-sm-4 text-align:center">
-    <div class="card" style="margin:0">
-        <div class="card-header" style="text-align:center">
-            <h1>Movies</h1>
-        </div>
-        <div class="card-block" >
-            <table clas="table table-hover">
-                <thead>
-                    <div class="column">
-                        <input type="text" class = "form-control" [(ngModel)]="movieName">
-                        <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "dir" (click)="btnClick()"></a>
-                        <select class="form-control" [(ngModel)]="SetSort">
-                                <option *ngFor = "let j of sortByList" value="{{j}}">{{j}}</option>
-                            </select>
-                        <select class="form-control" [(ngModel)]="SetLimit">
-                            <option *ngFor = "let i of limit" value="{{i}}">{{i}}</option>
-                        </select>
+                        </div>
                     </div>
-                    <tr class="blue-grey lighten-4">
-                        <th>ID</th>
-                        <th>title</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let mov of movies" mdbWavesEffect (click)="pressMovie(mov.id)">
-                    <th>{{mov.id}}</th>
-                    <td>{{mov.title}}</td>
-                </tr>
-                </tbody>
-                <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
-                <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
-                
-            </table>
-    </div>    
-</div>
-</div>
+            </div>
+            <div class="col-sm-4 text-align:center">
+                <div class="card" style="margin:0">
+                    <div class="card-header" style="text-align:center">
+                        <h1>Movies</h1>
+                    </div>
+                    <div class="card-block" >
+                        <table clas="table table-hover">
+                            <thead>
+                                <div class="column">
+                                    <input type="text" class = "form-control" [(ngModel)]="movieName">
+                                    <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "dir" (click)="btnClick()"></a>
+                                    <select class="form-control" [(ngModel)]="SetSort">
+                                            <option *ngFor = "let j of sortByList" value="{{j}}">{{j}}</option>
+                                        </select>
+                                    <select class="form-control" [(ngModel)]="SetLimit">
+                                        <option *ngFor = "let i of limit" value="{{i}}">{{i}}</option>
+                                    </select>
+                                </div>
+                                <tr class="blue-grey lighten-4">
+                                    <th>ID</th>
+                                    <th>title</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let mov of movies" class='waves-light' mdbWavesEffect (click)="pressMovie(mov.id)">
+                                <th>{{mov.id}}</th>
+                                <td>{{mov.title}}</td>
+                            </tr>
+                            </tbody>
+                            <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
+                            <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>  
+                        </table>
+                    </div>    
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
