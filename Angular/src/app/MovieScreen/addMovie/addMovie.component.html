@@ -1,0 +1,43 @@
+<section class="view intro-2">
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                    <div class="card text-center" >
+                        <div class="card-header">
+                            <h4 class="card-title"><strong>ADD MOVIE</strong></h4>
+                        </div>
+                        <div class="card-block">
+                            <div class="card-text">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr><th>Title:</th><th><input type="text" class = "form-control" [(ngModel)]="newMovie.title"></th></tr>
+                                        <tr><th>IMDBScore:</th><th><input type="number" class = "form-control" [(ngModel)]="newMovie.IMDBScore"></th></tr>
+
+                                        <tr><th>Hero:</th><th>  <select class="form-control" [(ngModel)]="newMovie.hero">
+                                                                    <option *ngFor = "let h of heroes" value="{{h.id}}">{{h.heroName}}</option>
+                                                                </select></th></tr>
+
+                                        <tr><th>Villain:</th><th>  <select class="form-control" [(ngModel)]="newMovie.villain">
+                                                <option *ngFor = "let v of villains" value="{{v.id}}">{{v.name}}</option>
+                                            </select></th></tr>
+
+                                        <tr><th>Release Year:</th><th><input type="number" class = "form-control" [(ngModel)]="newMovie.releaseYear"></th></tr>
+
+                                        <tr><th>Director:</th><th><input type="text" class = "form-control" [(ngModel)]="newMovie.director"></th></tr>
+
+                                        <tr><th>MCU Phase:</th><th> <input type="number" class = "form-control" [(ngModel)]="newMovie.phase"></th></tr>
+
+                                        <tr><th>Watchorder nr:</th><th><input type="number" class = "form-control" [(ngModel)]="newMovie.timeLineOrder"></th></tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+</section>

@@ -2,43 +2,42 @@ import { Component } from '@angular/core';
 import { debug } from 'util';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { validateConfig } from '@angular/router/src/config';
-import { MoviesService, RootMovie, Movie  } from '../../services/movie.service';
+import { MoviesService, RootMovie, Movie, Hero, Villain  } from '../../services/movie.service';
 
 
 @Component({
-selector: 'app-movie',
-templateUrl: './movie.component.html',
-styleUrls: ['./movie.component.scss']
+selector: 'app-movie-add',
+templateUrl: './addMovie.component.html',
+styleUrls: ['./addMovie.component.scss']
 }) 
-export class MovieComponent implements OnInit{
+export class AddMovieComponent implements OnInit{
     constructor(private _svc : MoviesService){
     }
 
-    movies: Movie[]
-    offset = 0
-    limit : number[] = [5,10,25,50]
-    sortByList = ["title", "IMDBScore", "ReleaseYear", "Phase", "TimeLineOrder"]
-    sortBy="title"
-    dir = "asc"
-    movieName = ""
-    setLimit = 0
-    maxAmount = 100
+    newMovie: Movie
+    heroes: Hero[]
+    villains: Villain[]
 
-    imageUrl : string;
     movie : Movie;
 
     ngOnInit(){
-        this._svc.getMovies()
-        .subscribe(result => {this.movies = result.data; this.maxAmount = result.count;})
-        setInterval(this.Update , 3000);
+        this.newMovie ={
+            id:0,
+            title:"",
+            imdbScore:0,
+            hero:null,
+            villain:null,
+            releaseYear:2018,
+            director:null,
+            phase:0,
+            timeLineOrder:0
+        }
+        this._svc.getHero()
+        .subscribe(result => {this.heroes = result.data;})
+        this._svc.getVillain()
+        .subscribe(result => {this.villains = result.data;})
     }
-
-    Update = () =>
-    {
-        this._svc.getMovies(this.movieName,0,this.sortBy,this.dir)
-        .subscribe(result => {this.movies = result.data; this.maxAmount = result.count;})
-    }
-
+    /*
     get SetSort()
     {
         return this.sortBy
@@ -85,4 +84,5 @@ export class MovieComponent implements OnInit{
         console.log("you presse me")
         console.log(id)
     }
+    */
 }
