@@ -10,12 +10,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { RouterModule } from '@angular/router';
 import { MoviesService } from './services/movie.service';
-import { WelcomeComponent } from './comicScreen/welcome/welcome.component';
-import { CharacterListComponent } from './comicScreen/charList/characterList.component';
-import { MovieComponent } from './MovieScreen/movie/movie.component';
-import { CharProfileModule } from './comicScreen/charProfile-module/charProfile.component';
+
+import { WelcomeComponent } from './comicCharScreen/welcome/welcome.component';
+import { CharacterListComponent } from './comicCharScreen/charList/characterList.component';
+import { CharProfileModule } from './comicCharScreen/charProfile-module/charProfile.component';
+
 import { HomeComponent } from './welcomeScreen/home/home.component';
+
+import { MovieComponent } from './MovieScreen/movie/movie.component';
+
 import { IntroComponent } from './introScreen/Intro/intro.component';
+
 import { AddMovieComponent } from './addMCUScreen/addMovie/addMovie.component';
 import { AddHeroComponent } from './addMCUScreen/addHero/addHero.component';
 import { AddScreenComponent } from './addMCUScreen/addScreen/addScreen.component';
