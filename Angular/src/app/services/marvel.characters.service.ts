@@ -138,7 +138,7 @@ export interface Result {
     id: number;
     name: string;
     description: string;
-    modified: string; //Date
+    modified?: Data; //Date
     thumbnail: Thumbnail;
     resourceURI: string;
     comics: Comics;

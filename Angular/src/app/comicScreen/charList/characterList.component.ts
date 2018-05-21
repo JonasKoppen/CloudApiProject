@@ -22,29 +22,39 @@ export class CharacterListComponent implements OnInit{
     maxAmount = 100
 
     imageUrl : string;
-    character : character;
+    character : Result;
 
 
     constructor(private _svc : CharacterService){
+        this.character = this.dummyCharacter
         this.characters = this.dummyCharacters.results
-        this.maxAmount = this.dummyCharacters.count
+        //this.maxAmount = this.dummyCharacters.count
+        this.character.comics.items
     }
 
     ngOnInit(){
         //this._svc.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
         //      .subscribe(result => this.characters = result.data.results);
-        //setInterval(this.Update , 5000);
+        //setInterval(this.Update , 10000);
+        setInterval(this.UpdateImage , 1000);
     }
 
     Update = () =>
     {
-      this._svc.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
+        this._svc.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
             .subscribe(result => {this.maxAmount = result.data.total; this.characters = result.data.results});
-    if(this.character != null){
-        console.log(this.character.data.results[0].thumbnail.path +'.'+ this.character.data.results[0].thumbnail.extension);
-        this.imageUrl = this.character.data.results[0].thumbnail.path +'.'+ this.character.data.results[0].thumbnail.extension;
-    }
+        if(this.character != null){
+            console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
+            this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
+        }
     console.log(this.character)
+    }
+    UpdateImage = () =>
+    {
+        if(this.character != null){
+            console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
+            this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
+        }
     }
 
     get SetLimit()
@@ -80,11 +90,338 @@ export class CharacterListComponent implements OnInit{
         console.log(this.offset)
     }
     pressChar(id){
-        this._svc.findCharacterById(id).subscribe(result => this.character = result.data[0]);
+        this._svc.findCharacterById(id).subscribe(result => this.character = result.data.results[0]);
         console.log("you presse me")
         console.log(id)
+        this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
     }
     
+    dummyCharacter: Result =
+                {
+                    "id": 1010735,
+                    "name": "Drax",
+                    "description": "",
+                    "thumbnail": {
+                        "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/d0/526032deabbff",
+                        "extension": "jpg"
+                    },
+                    "resourceURI": "http://gateway.marvel.com/v1/public/characters/1010735",
+                    "comics": {
+                        "available": 56,
+                        "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010735/comics",
+                        "items": [
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/61519",
+                                "name": "All-New Guardians of the Galaxy (2017) #7"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/62149",
+                                "name": "All-New Guardians of the Galaxy Vol. 1: Communication Breakdown (Trade Paperback)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/62151",
+                                "name": "All-New Guardians of the Galaxy Vol. 3: Infinity Quest (Trade Paperback)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/60513",
+                                "name": "All-New Wolverine (2015) #23"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/4788",
+                                "name": "Annihilation (2006) #1"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/5078",
+                                "name": "Annihilation (2006) #2"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/5230",
+                                "name": "Annihilation (2006) #3"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/5529",
+                                "name": "Annihilation (2006) #4"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/5655",
+                                "name": "Annihilation (2006) #5"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/4221",
+                                "name": "Annihilation: Nova (2006) #2"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/4473",
+                                "name": "Annihilation: Nova (2006) #4"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/3985",
+                                "name": "Annihilation: Prologue (2006)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/66602",
+                                "name": "Annihilation: The Complete Collection Vol. 1 (Trade Paperback)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/4822",
+                                "name": "Annihilation: The Nova Corps (2006) #1"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/55334",
+                                "name": "The Astonishing Ant-Man Vol. 3: The Trial of Ant-Man (Trade Paperback)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/7085",
+                                "name": "Avengers (1963) #219"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/7087",
+                                "name": "Avengers (1963) #220"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/6930",
+                                "name": "Avengers Annual (1967) #16"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/8032",
+                                "name": "Captain Marvel (1968) #43"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/comics/8033",
+                                "name": "Captain Marvel (1968) #44"
+                            }
+                        ],
+                        "returned": 20
+                    },
+                    "series": {
+                        "available": 34,
+                        "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010735/series",
+                        "items": [
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/23058",
+                                "name": "All-New Guardians of the Galaxy (2017 - Present)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/22776",
+                                "name": "All-New Guardians of the Galaxy Vol. 1: Communication Breakdown (2017)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/22778",
+                                "name": "All-New Guardians of the Galaxy Vol. 3: Infinity Quest (2018)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/20682",
+                                "name": "All-New Wolverine (2015 - Present)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/3613",
+                                "name": "Annihilation (2006 - 2007)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/1081",
+                                "name": "Annihilation: Nova (2006)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/1077",
+                                "name": "Annihilation: Prologue (2006)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/24256",
+                                "name": "Annihilation: The Complete Collection Vol. 1 (2018)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/1115",
+                                "name": "Annihilation: The Nova Corps (2006)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/1991",
+                                "name": "Avengers (1963 - 1996)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/1988",
+                                "name": "Avengers Annual (1967 - 1994)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/2000",
+                                "name": "Captain Marvel (1968 - 1979)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/22429",
+                                "name": "Deadpool and The Secret Defenders (2017)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/20801",
+                                "name": "Drax (2015 - Present)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/912",
+                                "name": "Drax the Destroyer (2005)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/20465",
+                                "name": "Guardians of the Galaxy (2015 - 2017)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/16410",
+                                "name": "Guardians of the Galaxy (2013 - Present)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/19019",
+                                "name": "Guardians of the Galaxy (1990 - 1994)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/4885",
+                                "name": "Guardians of the Galaxy (2008 - 2010)"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/series/23674",
+                                "name": "Guardians of the Galaxy (2017 - Present)"
+                            }
+                        ],
+                        "returned": 20
+                    },
+                    "stories": {
+                        "available": 57,
+                        "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010735/stories",
+                        "items": [
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/4847",
+                                "name": "1 of 4 - 4XLS",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/5923",
+                                "name": "1 of 1",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/5950",
+                                "name": "Annihilation: Nova (2006) #2",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/5956",
+                                "name": "1 of 6 - Annihilation",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/5958",
+                                "name": "2 of 6 - Annihilation",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/5960",
+                                "name": "3 of 6 - Annihilation",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/5962",
+                                "name": "4 of 6 - Annihilation",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/5964",
+                                "name": "5 of 6 - Annihilation",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/6149",
+                                "name": "Cover #6149",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/14709",
+                                "name": "Avengers (1963) #219",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/14713",
+                                "name": "Avengers (1963) #220",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/17388",
+                                "name": "Avengers Annual (1967) #16",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/18298",
+                                "name": "Cover #18298",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/18300",
+                                "name": "Cover #18300",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/35365",
+                                "name": "You're Invited!",
+                                "type": "interiorStory"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/39236",
+                                "name": "Temper Tantrum",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/39238",
+                                "name": "Demand This, Hulkie!",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/39246",
+                                "name": "Can Even Drax Prevail Against the Power of Maxam",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/39304",
+                                "name": "Old Foes",
+                                "type": "cover"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/stories/44694",
+                                "name": "Technarchy 1 of 2",
+                                "type": "cover"
+                            }
+                        ],
+                        "returned": 20
+                    },
+                    "events": {
+                        "available": 3,
+                        "collectionURI": "http://gateway.marvel.com/v1/public/characters/1010735/events",
+                        "items": [
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/events/229",
+                                "name": "Annihilation"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/events/235",
+                                "name": "Blood and Thunder"
+                            },
+                            {
+                                "resourceURI": "http://gateway.marvel.com/v1/public/events/295",
+                                "name": "Realm of Kings"
+                            }
+                        ],
+                        "returned": 3
+                    },
+                    "urls": [
+                        {
+                            "type": "detail",
+                            "url": "http://marvel.com/characters/15/drax?utm_campaign=apiRef&utm_source=acdb5b6c98e4a5408e05093f4d0f6de4"
+                        },
+                        {
+                            "type": "wiki",
+                            "url": "http://marvel.com/universe/Drax?utm_campaign=apiRef&utm_source=acdb5b6c98e4a5408e05093f4d0f6de4"
+                        },
+                        {
+                            "type": "comiclink",
+                            "url": "http://marvel.com/comics/characters/1010735/drax?utm_campaign=apiRef&utm_source=acdb5b6c98e4a5408e05093f4d0f6de4"
+                        }
+                    ]
+                }
+
     dummyCharacters = {
         "offset": 5,
         "limit": 5,
@@ -95,7 +432,6 @@ export class CharacterListComponent implements OnInit{
                 "id": 1011386,
                 "name": "Karma",
                 "description": "",
-                "modified": "2013-01-22T14:03:05-0500",
                 "thumbnail": {
                     "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/00/50febe78aacca",
                     "extension": "jpg"
@@ -380,7 +716,6 @@ export class CharacterListComponent implements OnInit{
                 "id": 1009385,
                 "name": "Karnak",
                 "description": "",
-                "modified": "2017-08-21T16:58:04-0400",
                 "thumbnail": {
                     "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/c0/52740e5d96fcc",
                     "extension": "jpg"
@@ -717,7 +1052,6 @@ export class CharacterListComponent implements OnInit{
                 "id": 1010752,
                 "name": "Karolina Dean ",
                 "description": "",
-                "modified": "1969-12-31T19:00:00-0500",
                 "thumbnail": {
                     "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/50/4c00377435871",
                     "extension": "jpg"
@@ -873,7 +1207,6 @@ export class CharacterListComponent implements OnInit{
                 "id": 1010783,
                 "name": "Kat Farrell",
                 "description": "",
-                "modified": "1969-12-31T19:00:00-0500",
                 "thumbnail": {
                     "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
                     "extension": "jpg"
@@ -990,7 +1323,6 @@ export class CharacterListComponent implements OnInit{
                 "id": 1010810,
                 "name": "Kate Bishop",
                 "description": "",
-                "modified": "1969-12-31T19:00:00-0500",
                 "thumbnail": {
                     "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/60/4c0035f5b8c95",
                     "extension": "jpg"
