@@ -15,13 +15,66 @@ export class AddHeroComponent implements OnInit{
     }
 
     newHero: Hero
+    heroes: Hero[]
+    mode:number //ADD = 0, Remove = 1, Change = 2
 
     ngOnInit(){
         this.newHero ={
-            id:0,
             name:"",
             heroName:"",
             actor:"",
         }
+        this.Update()
+    }
+
+    btnClick(){
+        switch(this.mode){
+            case 0:{
+                this._svc.postHero(this.newHero).subscribe(result => console.log(result))
+                break;
+            }
+            case 1:{
+                this._svc.deleteHero(this.newHero).subscribe(result => console.log(result))
+                break;  
+            }  
+            case 2:{
+                this._svc.updateHero(this.newHero).subscribe(result => console.log(result))
+                break;
+            }
+        }
+        console.log(this.newHero)
+         
+    }
+    btnSetAdd(){
+        this.Update()
+        this.mode = 0
+        this.newHero ={
+            name:"",
+            heroName:"",
+            actor:"",
+        }
+    }
+    btnSetRM(){
+        this.Update()
+        this.mode = 1
+    }
+    btnSetCH(){
+        this.Update()
+        this.mode = 2
+
+    }
+    Update = () => {
+        this._svc.getHero()
+        .subscribe(result => {this.heroes = result.data;})
+    }
+    set SetHero(value : number)
+    {
+        for (var i=0;i<this.heroes.length; i++){
+            if(this.heroes[i].id == value)
+                this.newHero = this.heroes[i]
+        }
+        
+        console.log(this.newHero)
+        console.log(value)
     }
 }

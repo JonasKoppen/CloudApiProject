@@ -17,8 +17,9 @@ export class AddMovieComponent implements OnInit{
     newMovie: Movie
     heroes: Hero[]
     villains: Villain[]
+    mode:number //ADD = 0, Remove = 1, Change = 2
 
-    movie : Movie;
+    movies : Movie[];
 
     ngOnInit(){
         this.newMovie ={
@@ -31,25 +32,89 @@ export class AddMovieComponent implements OnInit{
             phase:0,
             timeLineOrder:0
         }
+        this.Update()
+
+    }
+
+    btnClick(){
+        switch(this.mode){
+            case 0:{
+                this._svc.postMovie(this.newMovie).subscribe(result => console.log(result))
+                break;
+            }
+            case 1:{
+                this._svc.deleteMovie(this.newMovie).subscribe(result => console.log(result))
+                break;  
+            }  
+            case 2:{
+                this._svc.updateMovie(this.newMovie).subscribe(result => console.log(result))
+                break;
+            }
+        }
+        console.log(this.newMovie)
+         
+    }
+
+    btnSetAdd(){
+        this.Update()
+        this.mode = 0
+        this.newMovie ={
+            title:"",
+            imdbScore:0,
+            hero:null,
+            villain:null,
+            releaseYear:2018,
+            director:null,
+            phase:0,
+            timeLineOrder:0
+        }
+    }
+    btnSetRM(){
+        this.Update()
+        this.mode = 1
+    }
+    btnSetCH(){
+        this.Update()
+        this.mode = 2
+
+    }
+
+    Update = () => {
         this._svc.getHero()
         .subscribe(result => {this.heroes = result.data;})
         this._svc.getVillain()
         .subscribe(result => {this.villains = result.data;})
+        this._svc.getMovies()
+        .subscribe(result => {this.movies = result.data;})
     }
 
-    btnClick(){
-        console.log(this.newMovie)
-        this._svc.postMovie(this.newMovie).subscribe(result => console.log(result)) 
-    }
     set SetHero(value : number)
     {
-        this.newMovie.hero = this.heroes[value]
+        for (var i=0;i<this.heroes.length; i++){
+            if(this.heroes[i].id == value)
+                this.newMovie.hero = this.heroes[i]
+        }
+        
+        console.log(this.newMovie.hero)
         console.log(value)
     }
     set SetVillain(value : number)
     {
-        this.newMovie.villain = this.villains[value]
-        console.log(value)
+        for (var i=0;i<this.villains.length; i++){
+            if(this.villains[i].id == value)
+                this.newMovie.villain = this.villains[i]
+        }
+        
+        console.log(this.newMovie.villain)
+    }
+    set SetMovie(value : number)
+    {
+        for (var i=0;i<this.movies.length; i++){
+            if(this.movies[i].id == value)
+                this.newMovie = this.movies[i]
+        }
+        
+        console.log(this.newMovie)
     }
     /*
     get SetSort()

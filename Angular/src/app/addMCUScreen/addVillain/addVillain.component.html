@@ -4,9 +4,29 @@
             <h4 class="card-title"><strong>ADD Villain</strong></h4>
         </div>
         <div class="card-block">
+                <div class="row">
+                        <div class="col-3">
+                            <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnSetAdd()">ADD</a>
+                        </div>
+                        <div class="col-4">
+                            <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnSetRM()">REMOVE</a>
+                        </div>
+                        <div class="col-4">
+                                <a type="button" class="btn btn-info  waves-light" mdbWavesEffect  (click)="btnSetCH()">CHANGE</a>
+                            </div>
+                </div>
             <div class="card-text">
                 <table class="table table-striped">
                     <tbody>
+                        <div *ngIf="mode == 0; else elseState">
+                                <tr><th>Name:</th><th><input type="text" class = "form-control" [(ngModel)]="newVillain.Name"></th></tr>
+                        </div>
+                            
+                        <ng-template #elseState>
+                                <tr><th>Name:</th><th>  <select class="form-control" [(ngModel)]="SetVillain">
+                                        <option *ngFor = "let v of villains" value="{{v.id}}">{{v.name}}</option>
+                                    </select></th></tr>
+                        </ng-template>
                         <tr><th>Name:</th><th><input type="text" class = "form-control" [(ngModel)]="newVillain.name"></th></tr>
                         <tr><th>Actor:</th><th><input type="text" class = "form-control" [(ngModel)]="newVillain.actor"></th></tr>
     
@@ -14,7 +34,7 @@
                     
                 </table>
                 <div class="text-center">
-                    <button class="btn btn-unique waves-light" mdbWavesEffect>Send villain
+                    <button class="btn btn-unique waves-light" mdbWavesEffect (click)="btnClick()">Send villain
                         <i class="fa fa-paper-plane-o ml-1"></i>
                     </button>
                 </div>

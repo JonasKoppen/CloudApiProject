@@ -3,11 +3,32 @@
     <div class="card-header">
         <h4 class="card-title"><strong>ADD MOVIE</strong></h4>
     </div>
+
     <div class="card-block">
+            <div class="row">
+                    <div class="col-3">
+                        <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnSetAdd()">ADD</a>
+                    </div>
+                    <div class="col-4">
+                        <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnSetRM()">REMOVE</a>
+                    </div>
+                    <div class="col-4">
+                            <a type="button" class="btn btn-info  waves-light" mdbWavesEffect  (click)="btnSetCH()">CHANGE</a>
+                        </div>
+            </div>
         <div class="card-text">
             <table class="table table-striped">
                 <tbody>
-                    <tr><th>Title:</th><th><input type="text" class = "form-control" [(ngModel)]="newMovie.title"></th></tr>
+                    <div *ngIf="mode == 0; else elseState">
+                            <tr><th>Title:</th><th><input type="text" class = "form-control" [(ngModel)]="newMovie.title"></th></tr>
+                    </div>
+                        
+                    <ng-template #elseState>
+                            <tr><th>Title:</th><th>  <select class="form-control" [(ngModel)]="SetMovie">
+                                    <option *ngFor = "let m of movies" value="{{m.id}}">{{m.title}}</option>
+                                </select></th></tr>
+                    </ng-template>
+
                     <tr><th>IMDBScore:</th><th><input type="number" min="0" max="10" class = "form-control" [(ngModel)]="newMovie.imdbScore"></th></tr>
 
                     <tr><th>Hero:</th><th>  <select class="form-control" [(ngModel)]="SetHero">
