@@ -16,7 +16,10 @@ import { MovieComponent } from './MovieScreen/movie/movie.component';
 import { CharProfileModule } from './comicScreen/charProfile-module/charProfile.component';
 import { HomeComponent } from './welcomeScreen/home/home.component';
 import { IntroComponent } from './introScreen/Intro/intro.component';
-import { AddMovieComponent } from './MovieScreen/addMovie/addMovie.component';
+import { AddMovieComponent } from './addMCUScreen/addMovie/addMovie.component';
+import { AddHeroComponent } from './addMCUScreen/addHero/addHero.component';
+import { AddScreenComponent } from './addMCUScreen/addScreen/addScreen.component';
+import { AddVillainComponent } from './addMCUScreen/addVillain/addVillain.component';
 
 
 @NgModule({
@@ -31,7 +34,11 @@ import { AddMovieComponent } from './MovieScreen/addMovie/addMovie.component';
     CharacterListComponent,
 
     MovieComponent,
+
     AddMovieComponent,
+    AddHeroComponent,
+    AddScreenComponent,
+    AddVillainComponent,
 
     IntroComponent
   ],
@@ -44,7 +51,7 @@ import { AddMovieComponent } from './MovieScreen/addMovie/addMovie.component';
       {path: "home", component : HomeComponent},
       {path: "list", component : CharacterListComponent},
       {path: "movie", component : MovieComponent},
-      {path: "addMovie", component : AddMovieComponent},
+      {path: "addMovie", component : AddScreenComponent},
       {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},
       {path : "**", redirectTo: "404"}

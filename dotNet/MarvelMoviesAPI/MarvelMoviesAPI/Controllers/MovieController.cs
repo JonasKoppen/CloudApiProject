@@ -144,6 +144,10 @@ namespace MarvelMoviesAPI.Controllers
         [HttpPost]
         public IActionResult CreateMovie([FromBody] Movie newMovie)
         {
+            if (newMovie == null)
+                return BadRequest();
+            newMovie.Hero = context.Heroes.SingleOrDefault(d => d.Id == newMovie.Hero.Id);
+            newMovie.Villain = context.Villains.SingleOrDefault(d => d.Id == newMovie.Villain.Id);
             //Movie toevoegen in de databank, Id wordt dan ook toegekend
             context.MarvelMovies.Add(newMovie);
             context.SaveChanges();

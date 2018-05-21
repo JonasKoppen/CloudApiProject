@@ -50,7 +50,7 @@ export class MoviesService {
     }
     
     postMovie(movie: Movie): Observable<Movie>{
-        return this._http.post<Movie>("http://localhost:5050/api/v1/movie/", movie)
+        return this._http.post<Movie>("http://localhost:5050/api/v1/movie", movie)//.do(data => console.log(JSON.stringify(data)));
     }
 
     getHero(name?,heroName?,sort?,dir?) : Observable<RootHero>
@@ -79,6 +79,7 @@ export class MoviesService {
         return this._http.get<RootHero>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
+
     getVillain(name?,sort?,dir?) : Observable<RootVillain>
     {
         var request = ""
@@ -110,7 +111,7 @@ export interface RootMovie {
   }
   
   export  interface Movie {
-    id: number;
+    id?: number;
     title: string;
     imdbScore: number;
     hero: Hero;
@@ -127,7 +128,7 @@ export interface RootMovie {
   }
   
   export interface Villain {
-    id: number;
+    id?: number;
     name: string;
     actor: string;
   }
@@ -138,7 +139,7 @@ export interface RootMovie {
   }
   
   export interface Hero {
-    id: number;
+    id?: number;
     name: string;
     actor: string;
     heroName: string;

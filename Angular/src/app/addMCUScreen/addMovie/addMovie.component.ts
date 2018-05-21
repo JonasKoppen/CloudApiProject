@@ -22,7 +22,6 @@ export class AddMovieComponent implements OnInit{
 
     ngOnInit(){
         this.newMovie ={
-            id:0,
             title:"",
             imdbScore:0,
             hero:null,
@@ -36,6 +35,21 @@ export class AddMovieComponent implements OnInit{
         .subscribe(result => {this.heroes = result.data;})
         this._svc.getVillain()
         .subscribe(result => {this.villains = result.data;})
+    }
+
+    btnClick(){
+        console.log(this.newMovie)
+        this._svc.postMovie(this.newMovie).subscribe(result => console.log(result)) 
+    }
+    set SetHero(value : number)
+    {
+        this.newMovie.hero = this.heroes[value]
+        console.log(value)
+    }
+    set SetVillain(value : number)
+    {
+        this.newMovie.villain = this.villains[value]
+        console.log(value)
     }
     /*
     get SetSort()
