@@ -11,7 +11,6 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { RouterModule } from '@angular/router';
 import { MoviesService } from './services/movie.service';
 
-import { WelcomeComponent } from './comicCharScreen/welcome/welcome.component';
 import { CharacterListComponent } from './comicCharScreen/charList/characterList.component';
 import { CharProfileModule } from './comicCharScreen/charProfile-module/charProfile.component';
 
@@ -35,9 +34,10 @@ import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.compon
     PageNotFoundComponent,
 
     CharProfileModule,
+
     ComicBookComponent,
+
     HomeComponent,
-    WelcomeComponent,
     CharacterListComponent,
 
     MovieComponent,
@@ -59,6 +59,7 @@ import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.compon
       {path: "list", component : CharacterListComponent},
       {path: "movie", component : MovieComponent},
       {path: "addMovie", component : AddScreenComponent},
+      { path: 'comic/:id', component: ComicBookComponent},
       {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},
       {path : "**", redirectTo: "404"}

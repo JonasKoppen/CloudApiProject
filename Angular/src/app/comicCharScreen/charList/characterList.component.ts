@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { debug } from 'util';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { validateConfig } from '@angular/router/src/config';
-import { Result, CharacterService, Data, character } from '../../services/marvel.characters.service';
+import { Result, CharacterService, Data, RootCharacter, Comics } from '../../services/marvel.characters.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class CharacterListComponent implements OnInit{
     character : Result;
 
 
-    constructor(private _svc : CharacterService){
+    constructor(private _svc : CharacterService, private route: Router){
         this.character = this.dummyCharacter
         this.characters = this.dummyCharacters.results
         //this.maxAmount = this.dummyCharacters.count
@@ -44,17 +45,23 @@ export class CharacterListComponent implements OnInit{
         this._svc.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
             .subscribe(result => {this.maxAmount = result.data.total; this.characters = result.data.results});
         if(this.character != null){
-            console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
+            //console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
             this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
         }
-    console.log(this.character)
+    //console.log(this.character)
     }
     UpdateImage = () =>
     {
         if(this.character != null){
-            console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
+            //console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
             this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
         }
+    }
+
+    set SetCharName(value:string)
+    {
+        this.CharName = value
+        this.Update();
     }
 
     get SetLimit()
@@ -67,6 +74,14 @@ export class CharacterListComponent implements OnInit{
         this.setLimit = value;
         this.Update();
     }
+
+    ClickComic(comic : Comics) 
+    {
+        console.log(comic.available)
+        var splitted = comic.collectionURI.split("/");
+        console.log(splitted)
+        //this.route.navigateByUrl('/user/'+ comic.collectionURI);
+    };
 
     btnClick(){
         if(this.sortBy == "A-Z"){
