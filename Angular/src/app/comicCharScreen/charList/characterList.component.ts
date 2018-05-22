@@ -33,8 +33,8 @@ export class CharacterListComponent implements OnInit{
     }
 
     ngOnInit(){
-        //this._svc.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
-        //      .subscribe(result => this.characters = result.data.results);
+        this._svc.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
+              .subscribe(result => this.characters = result.data.results);
         //setInterval(this.Update , 10000);
         setInterval(this.UpdateImage , 1000);
     }
@@ -64,7 +64,8 @@ export class CharacterListComponent implements OnInit{
 
     set SetLimit(value : number)
     {
-        this.setLimit = value
+        this.setLimit = value;
+        this.Update();
     }
 
     btnClick(){
@@ -76,24 +77,27 @@ export class CharacterListComponent implements OnInit{
             this.sortBy = "A-Z"
             this.sortByCommand = "name"
         }
-        
+        this.Update();
     }
 
     btnPrevious(){
         if(this.offset - this.setLimit > 0)
             this.offset = this.offset - this.setLimit
         console.log(this.offset)
+        this.Update()
     }
     btnNext(){
         if(this.offset + this.setLimit < this.maxAmount)
             this.offset = this.offset + this.setLimit
         console.log(this.offset)
+        this.Update();
     }
     pressChar(id){
         this._svc.findCharacterById(id).subscribe(result => this.character = result.data.results[0]);
         console.log("you presse me")
         console.log(id)
         this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
+
     }
     
     dummyCharacter: Result =
