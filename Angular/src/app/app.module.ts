@@ -25,6 +25,7 @@ import { AddMovieComponent } from './addMCUScreen/addMovie/addMovie.component';
 import { AddHeroComponent } from './addMCUScreen/addHero/addHero.component';
 import { AddScreenComponent } from './addMCUScreen/addScreen/addScreen.component';
 import { AddVillainComponent } from './addMCUScreen/addVillain/addVillain.component';
+import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AddVillainComponent } from './addMCUScreen/addVillain/addVillain.compon
     PageNotFoundComponent,
 
     CharProfileModule,
+    ComicBookComponent,
     HomeComponent,
     WelcomeComponent,
     CharacterListComponent,
