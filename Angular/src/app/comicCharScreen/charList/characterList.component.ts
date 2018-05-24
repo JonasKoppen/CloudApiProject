@@ -21,11 +21,11 @@ export class CharacterListComponent implements OnInit{
     sortBy = "A-Z"
     sortByCommand = ""
     CharName = ""
-    setLimit = 0
+    setLimit = 10
     maxAmount = 100
 
     imageUrl : string;
-    character : Characters;
+    CharId : number;
 
 
     constructor(private _characterSVC : CharacterService, private _comicSVC: ComicService, private route: Router){
@@ -47,19 +47,13 @@ export class CharacterListComponent implements OnInit{
     {
         this._characterSVC.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
             .subscribe(result => {this.maxAmount = result.data.total; this.characters = result.data.results});
-        if(this.character != null){
-            //console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
-            this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
-            
-        }
+        
+        
     //console.log(this.character)
     }
     UpdateImage = () =>
     {
-        if(this.character != null){
-            //console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
-            this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
-        }
+        
     }
 
     set SetCharName(value:string)
@@ -110,11 +104,7 @@ export class CharacterListComponent implements OnInit{
         this.Update();
     }
     pressChar(id){
-        this._characterSVC.findCharacterById(id).subscribe(result => this.character = result.data.results[0]);
-        console.log("you presse me")
-        console.log(id)
-        this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
-        this._comicSVC.getComicByCharacterId(id).subscribe(result => this.comics = result.data.results)
+        this.CharId = id;
 
     }
     

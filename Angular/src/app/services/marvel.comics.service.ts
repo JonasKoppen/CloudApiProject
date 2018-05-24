@@ -9,7 +9,6 @@ export class ComicService {
     apikey = "acdb5b6c98e4a5408e05093f4d0f6de4";
     privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
     timeStamp: number;
-    totalChars = 1491;
     baseLink = "https://gateway.marvel.com/v1/public/comics";
     
 
@@ -36,10 +35,24 @@ export class ComicService {
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    getComicByCharacterId(id) : Observable<ComicRoot>
+    getComicByCharacterId(id:number, limit?:number, offset?:number) : Observable<ComicRoot>
     {
         var myHash = this.createHash();
-        var req = "https://gateway.marvel.com/v1/public/characters" + '/'+ id + '/comics' + '?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var request = '?'
+        if(limit > 0 && limit < 100)
+        {
+            request += 'limit='+limit+'&'
+        }
+        if(offset > 0)
+        {
+            if(offset < 0)
+            {
+                offset = 0;
+                
+            }
+            request += 'offset='+offset+'&'
+        }
+        var req = "https://gateway.marvel.com/v1/public/characters" + '/'+ id + '/comics' + request +'ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
         console.log(req);
         return this._http.get<ComicRoot>(req)
         //.do(data => console.log(JSON.stringify(data)));

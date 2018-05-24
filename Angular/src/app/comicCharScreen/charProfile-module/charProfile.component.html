@@ -1,10 +1,25 @@
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <input type="text" class = "form-control" [(ngModel)]="CharReq">
-        </div>
-        <div class="card-block">
-                <img class="img-fluid" [src]="imageUrl" alt="No image" >
-        </div>
+<div class="card" *ngIf="character">
+    <div class="card-header">
+        {{character.name}}
+    </div>
+    <div class="card-block">
+        <img class="img-fluid" [src]="imageUrl" alt="No image">
+        <table clas="table table-hover">
+                <thead>
+                    <tr class="blue-grey lighten-4">
+                        <th>nr</th>
+                        <th>comic</th>
+                        <th>picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let comic of comics" mdbWavesEffect>
+                    <th>{{comic.id}}</th>
+                    <td (click)="ClickComic(comic.id)" >{{comic.title}}</td>
+                    <td><img class="imgComic" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="No image"></td>
+                </tr>
+                </tbody>
+
+        </table>
     </div>
 </div>

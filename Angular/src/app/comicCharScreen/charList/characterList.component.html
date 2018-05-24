@@ -3,30 +3,9 @@
 <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                    <div class="card" *ngIf="character">
-                            <div class="card-header">
-                                {{character.name}}
-                            </div>
-                            <div class="card-block">
-                                    <img class="img-fluid" [src]="imageUrl" alt="No image" >
-                                    <table clas="table table-hover">
-                                            <thead>
-                                                <tr class="blue-grey lighten-4">
-                                                    <th>nr</th>
-                                                    <th>comic</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr *ngFor="let comic of comics" mdbWavesEffect>
-                                                <th>x</th>
-                                                <td (click)="ClickComic(comic.id)" >{{comic.title}}</td>
-                                                <td><img class="imgComic" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="No image"></td>
-                                            </tr>
-                                            </tbody>
-                
-                                        </table>
-                            </div>
-                        </div>
+                    <app-charProfile
+                    [CharId]="CharId"
+                    ></app-charProfile>
             </div>
             <div class="col-sm-6 text-align:center">
                 <div class="card" style="margin:5px">

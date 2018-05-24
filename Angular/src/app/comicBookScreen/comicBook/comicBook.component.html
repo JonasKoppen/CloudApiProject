@@ -11,13 +11,13 @@
                             <div class="card-text">
                                 <table class="table table-striped">
                                     <tbody>
-                                    <tr><th>Picture:</th><th><img class="img-fluid width: 200% \9; float-right" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="No image"></th></tr>
+                                    <tr><th>Picture:</th><th><img class="imgComic float-right" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="No image"></th></tr>
 
                                     <tr><th>Desctription:</th><th>{{comic.description}}</th></tr>
 
                                     <tr><th>pageCount:</th><th> {{comic.pageCount}}</th></tr>
 
-                                    <tr><th>price print:</th><th>{{comic.prices[0].price}}</th></tr>
+                                    <tr><th>{{comic.prices[0].type}}</th><th>${{comic.prices[0].price}}</th></tr>
 
                                     </tbody>
                                 </table>
