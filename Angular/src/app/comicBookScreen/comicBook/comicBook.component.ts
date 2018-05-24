@@ -24,8 +24,8 @@ export class ComicBookComponent implements OnInit{
     }
 
     ngOnInit(){
-        //this._svc.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
-        //      .subscribe(result => this.characters = result.data.results);
+        this._svc.getComicById(this.comicId)
+              .subscribe(result => this.comic = result.data.results[0]);
         //setInterval(this.Update , 10000);
         setInterval(this.UpdateImage , 1000);
     }

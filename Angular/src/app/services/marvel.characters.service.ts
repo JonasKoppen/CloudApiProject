@@ -57,7 +57,7 @@ export class CharacterService {
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    findCharacterByName(name) : Observable<RootCharacter>
+    getCharacterByName(name) : Observable<RootCharacter>
     {
         var myHash = this.createHash();
         var req = this.baseLink + '?nameStartsWith='+ name +'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
@@ -66,7 +66,7 @@ export class CharacterService {
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    findCharacterById(id) : Observable<RootCharacter>
+    getCharacterById(id) : Observable<RootCharacter>
     {
         var myHash = this.createHash();
         var req = this.baseLink + '/'+ id +'?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
