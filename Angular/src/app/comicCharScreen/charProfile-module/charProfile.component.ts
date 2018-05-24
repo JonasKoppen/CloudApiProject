@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import {Http, Response} from '@angular/http';
 import {Md5} from 'ts-md5/dist/md5';
-import { CharacterService , RootCharacter, Result} from '../../services/marvel.characters.service';
+import { CharacterService , RootCharacter, Characters} from '../../services/marvel.characters.service';
 //import { ThrowStmt } from '@angular/compiler';
 
 @Component({
@@ -14,7 +14,7 @@ export class CharProfileModule implements OnInit {
   imageUrl : string;
   character: RootCharacter;
   private _search: string = "Loki";
-  characters: Result[];
+  characters: Characters[];
 
   constructor(private _svc : CharacterService) {
   }

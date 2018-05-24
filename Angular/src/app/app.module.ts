@@ -25,6 +25,7 @@ import { AddHeroComponent } from './addMCUScreen/addHero/addHero.component';
 import { AddScreenComponent } from './addMCUScreen/addScreen/addScreen.component';
 import { AddVillainComponent } from './addMCUScreen/addVillain/addVillain.component';
 import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.component';
+import { ComicService } from './services/marvel.comics.service';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.compon
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     CharacterService,
-    MoviesService
+    MoviesService,
+    ComicService
   ],
   bootstrap: [AppComponent]
 })
