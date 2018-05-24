@@ -22,6 +22,8 @@ export class CharProfileModule implements OnInit {
 
   imageUrl : string;
   character : Characters;
+  hasNext = false
+  hasPrevious = false
 
 
   constructor(private _characterSVC : CharacterService, private _comicSVC: ComicService, private route: Router){
@@ -39,12 +41,21 @@ export class CharProfileModule implements OnInit {
   Update = () =>
   { 
     this._characterSVC.getCharacterById(this.charId).subscribe(result => this.character = result.data.results[0])
-    this._comicSVC.getComicByCharacterId(this.charId,this.setLimit,this.offset).subscribe(result => this.comics = result.data.results)
+    this._comicSVC.getComicByCharacterId(this.charId,this.setLimit,this.offset).subscribe(result => {
+                                                                                          this.comics = result.data.results;
+                                                                                          this.maxAmount = result.data.count;
+                                                                                          if(this.offset + this.setLimit < this.maxAmount)
+                                                                                              this.hasNext = true
+                                                                                        })
       if(this.character != null){
           //console.log(this.character.thumbnail.path +'.'+ this.character.thumbnail.extension);
           this.imageUrl = this.character.thumbnail.path +'.'+ this.character.thumbnail.extension;
           
       }
+      if(this.offset + this.setLimit < this.maxAmount)
+        this.hasNext = true
+      console.log(this.hasNext)
+      console.log(this.maxAmount)
   //console.log(this.character)
   }
 
@@ -79,17 +90,17 @@ export class CharProfileModule implements OnInit {
   };
 
   btnPrevious(){
-      if(this.offset - this.setLimit > 0)
-          this.offset = this.offset - this.setLimit
-      console.log(this.offset)
-      this.Update()
-  }
-  btnNext(){
-      if(this.offset + this.setLimit < this.maxAmount)
-          this.offset = this.offset + this.setLimit
-      console.log(this.offset)
-      this.Update();
-  }
+    if(this.offset - this.setLimit > 0)
+        this.offset = this.offset - this.setLimit
+    console.log(this.offset)
+    this.Update()
+}
+btnNext(){
+    if(this.offset + this.setLimit < this.maxAmount)
+        this.offset = this.offset + this.setLimit
+    console.log(this.offset)
+    this.Update();
+}
   
   dummyCharacter: Characters =
               {
