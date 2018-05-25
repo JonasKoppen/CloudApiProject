@@ -3,79 +3,27 @@
 <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                    <div class="card" *ngIf="character">
-                            <div class="card-header">
-                                {{character.name}}
-                            </div>
-                            <div class="card-block">
-                                    <img class="img-fluid" [src]="imageUrl" alt="No image" >
-                                    <table clas="table table-hover">
-                                            <thead>
-                                                <tr class="blue-grey lighten-4">
-                                                    <th>nr</th>
-                                                    <th>comic</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr *ngFor="let comic of character.comics.items" mdbWavesEffect (click)="pressComic(comics)">
-                                                <th>x</th>
-                                                <td>{{comic.name}}</td>
-                                            </tr>
-                                            </tbody>
-                
-                                        </table>
-                            </div>
+                <div class="card text-center" *ngIf="comic">
+                        <div class="card-header">
+                            <h4 class="card-title"><strong>{{comic.title}}</strong></h4>
                         </div>
-            </div>
-            <div class="col-sm-6 text-align:center">
-                <div class="card" style="margin:5px">
-                    <div class="card-header" style="text-align:center">
-                        <h1>Characters</h1>
-                    </div>
-                    <div class="card-block" >
-                        <br>
-                            <div class="row" style="margin: 3px">
-                                <div class="col">
-                                    <input type="text" class = "form-control" [(ngModel)]="CharName">
-                                </div>
-                                <div class="col-3">
-                                    <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "sortBy" (click)="btnClick()"></a>
-                                </div>
-                                <div class="col">
-                                    <select class="form-control" [(ngModel)]="SetLimit">
-                                        <option *ngFor = "let i of limit" value="{{i}}">{{i}}</option>
-                                    </select>
-                                </div>
-                            </div>
-                        <table clas="table table-hover">
-                            
-                            <thead>
-                                
-                                <tr class="blue-grey lighten-4">
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>image</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let char of characters" mdbWavesEffect (click)="pressChar(char.id)">
-                                <th>{{char.id}}</th>
-                                <td>{{char.name}}</td>
-                                <td><img class="img-fluid" src="{{char.thumbnail.path}}.{{char.thumbnail.extension}}" alt="No image"></td>
-                            </tr>
-                            </tbody>
+                        <div class="card-block">
+                            <div class="card-text">
+                                <table class="table table-striped">
+                                    <tbody>
+                                    <tr><th>Picture:</th><th><img class="imgComic float-right" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="No image"></th></tr>
 
-                        </table>
-                        <div class="row">
-                                <div class="col">
-                                    <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
-                                </div>
-                                <div class="col">
-                                    <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
-                                </div>
+                                    <tr><th>Desctription:</th><th>{{comic.description}}</th></tr>
+
+                                    <tr><th>pageCount:</th><th> {{comic.pageCount}}</th></tr>
+
+                                    <tr><th>{{comic.prices[0].type}}</th><th>${{comic.prices[0].price}}</th></tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>    
-                </div>
+                    </div>
             </div>
         </div>
     </div>

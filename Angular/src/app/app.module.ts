@@ -11,7 +11,6 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 import { RouterModule } from '@angular/router';
 import { MoviesService } from './services/movie.service';
 
-import { WelcomeComponent } from './comicCharScreen/welcome/welcome.component';
 import { CharacterListComponent } from './comicCharScreen/charList/characterList.component';
 import { CharProfileModule } from './comicCharScreen/charProfile-module/charProfile.component';
 
@@ -26,6 +25,7 @@ import { AddHeroComponent } from './addMCUScreen/addHero/addHero.component';
 import { AddScreenComponent } from './addMCUScreen/addScreen/addScreen.component';
 import { AddVillainComponent } from './addMCUScreen/addVillain/addVillain.component';
 import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.component';
+import { ComicService } from './services/marvel.comics.service';
 
 
 @NgModule({
@@ -35,9 +35,10 @@ import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.compon
     PageNotFoundComponent,
 
     CharProfileModule,
+
     ComicBookComponent,
+
     HomeComponent,
-    WelcomeComponent,
     CharacterListComponent,
 
     MovieComponent,
@@ -59,6 +60,7 @@ import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.compon
       {path: "list", component : CharacterListComponent},
       {path: "movie", component : MovieComponent},
       {path: "addMovie", component : AddScreenComponent},
+      { path: 'comic/:id', component: ComicBookComponent},
       {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},
       {path : "**", redirectTo: "404"}
@@ -67,7 +69,8 @@ import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.compon
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     CharacterService,
-    MoviesService
+    MoviesService,
+    ComicService
   ],
   bootstrap: [AppComponent]
 })

@@ -62,9 +62,16 @@
                                 <td>{{mov.title}}</td>
                             </tr>
                             </tbody>
-                            <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
-                            <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>  
+                            
                         </table>
+                        <div class="row">
+                                <div class="col-6 align-self-start">
+                                    <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
+                                </div>
+                                <div class="col-6 align-self-end">
+                                    <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
+                                </div>
+                        </div>
                     </div>    
                 </div>
             </div>

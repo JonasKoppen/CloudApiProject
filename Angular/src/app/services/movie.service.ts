@@ -10,6 +10,7 @@ export class MoviesService {
     privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
     timeStamp: number;
     totalChars = 1491;
+    baseLink = 'http://localhost:5050/api/v1/'
     
 
     constructor(private _http: HttpClient) {}
@@ -43,21 +44,21 @@ export class MoviesService {
 
     getMoviesById(id) : Observable<Movie>
     {
-        var req = 'http://localhost:5050/api/v1/movie/'+ id;
+        var req = this.baseLink+'movie/'+ id;
         console.log(req);
         return this._http.get<Movie>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
     
     postMovie(movie: Movie): Observable<Movie>{
-        return this._http.post<Movie>("http://localhost:5050/api/v1/movie", movie)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.post<Movie>(this.baseLink+"movie", movie)//.do(data => console.log(JSON.stringify(data)));
     }
     deleteMovie(movie: Movie): Observable<Movie>{
 
-        return this._http.delete<Movie>("http://localhost:5050/api/v1/movie/"+movie.id)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.delete<Movie>(this.baseLink+"movie/"+movie.id)//.do(data => console.log(JSON.stringify(data)));
     }
     updateMovie(movie: Movie): Observable<Movie>{
-        return this._http.put<Movie>("http://localhost:5050/api/v1/movie", movie)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.put<Movie>(this.baseLink+"movie", movie)//.do(data => console.log(JSON.stringify(data)));
     }
 
     getHero(name?,heroName?,sort?,dir?) : Observable<RootHero>
@@ -81,21 +82,21 @@ export class MoviesService {
         }
         request = request.substring(0,request.length-1)
         console.log("requesting:")
-        var req = 'http://localhost:5050/api/v1/hero?'+request;
+        var req = this.baseLink+'hero?'+request;
         console.log(req);
         return this._http.get<RootHero>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 
     postHero(hero: Hero): Observable<Hero>{
-        return this._http.post<Hero>("http://localhost:5050/api/v1/hero", hero)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.post<Hero>(this.baseLink+"hero", hero)//.do(data => console.log(JSON.stringify(data)));
     }
     deleteHero(hero: Hero): Observable<Hero>{
 
-        return this._http.delete<Hero>("http://localhost:5050/api/v1/hero/"+hero.id)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.delete<Hero>(this.baseLink+"hero/"+hero.id)//.do(data => console.log(JSON.stringify(data)));
     }
     updateHero(hero: Hero): Observable<Hero>{
-        return this._http.put<Hero>("http://localhost:5050/api/v1/hero", hero)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.put<Hero>(this.baseLink+"hero", hero)//.do(data => console.log(JSON.stringify(data)));
     }
 
     getVillain(name?,sort?,dir?) : Observable<RootVillain>
@@ -115,21 +116,21 @@ export class MoviesService {
         }
         request = request.substring(0,request.length-1)
         console.log("requesting:")
-        var req = 'http://localhost:5050/api/v1/villain?'+request;
+        var req = this.baseLink+'villain?'+request;
         console.log(req);
         return this._http.get<RootVillain>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 
     postVillain(villain: Villain): Observable<Villain>{
-        return this._http.post<Villain>("http://localhost:5050/api/v1/villain", villain)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.post<Villain>(this.baseLink+"villain", villain)//.do(data => console.log(JSON.stringify(data)));
     }
     deleteVillain(villain: Villain): Observable<Villain>{
 
-        return this._http.delete<Villain>("http://localhost:5050/api/v1/villain/"+villain.id)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.delete<Villain>(this.baseLink+"villain/"+villain.id)//.do(data => console.log(JSON.stringify(data)));
     }
     updateVillain(villain: Villain): Observable<Villain>{
-        return this._http.put<Villain>("http://localhost:5050/api/v1/villain", villain)//.do(data => console.log(JSON.stringify(data)));
+        return this._http.put<Villain>(this.baseLink+"villain", villain)//.do(data => console.log(JSON.stringify(data)));
     }
 
     

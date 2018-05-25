@@ -10,6 +10,7 @@ export class CharacterService {
     privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
     timeStamp: number;
     totalChars = 1491;
+    baseLink = "https://gateway.marvel.com/v1/public/characters";
     
 
     getTimestamp(): number{
@@ -24,9 +25,9 @@ export class CharacterService {
     }
     constructor(private _http: HttpClient) {}
 
-    getCharacterUnknown(name?,orderBy?,limit?, offset?) : Observable<character>
+    getCharacterUnknown(name?,orderBy?,limit?, offset?) : Observable<RootCharacter>
     {
-        var request = ""
+        var request = "?"
         if(name)
         {
             request += 'nameStartsWith='+ name + '&'
@@ -50,29 +51,31 @@ export class CharacterService {
         }
         
         var myHash = this.createHash();
-        var req = 'https://gateway.marvel.com/v1/public/characters?'+ request +'ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var req = this.baseLink + request +'ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
         console.log(req);
-        return this._http.get<character>(req)
+        return this._http.get<RootCharacter>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    findCharacterByName(name) : Observable<character>
+    getCharacterByName(name) : Observable<RootCharacter>
     {
         var myHash = this.createHash();
-        var req = 'https://gateway.marvel.com/v1/public/characters?nameStartsWith='+ name +'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var req = this.baseLink + '?nameStartsWith='+ name +'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
         console.log(req);
-        return this._http.get<character>(req)
+        return this._http.get<RootCharacter>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    findCharacterById(id) : Observable<character>
+    getCharacterById(id) : Observable<RootCharacter>
     {
         var myHash = this.createHash();
-        var req = 'https://gateway.marvel.com/v1/public/characters/'+ id +'?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        var req = this.baseLink + '/'+ id +'?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
         console.log(req);
-        return this._http.get<character>(req)
+        return this._http.get<RootCharacter>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
+
+    
 }
 
 export interface Thumbnail {
@@ -80,31 +83,21 @@ export interface Thumbnail {
     extension: string;
 }
 
-export interface Item {
-    resourceURI: string;
-    name: string;
-}
-
 export interface Comics {
     available: number;
     collectionURI: string;
-    items: Item[];
+    items: any[];
     returned: number;
-}
-
-export interface Item2 {
-    resourceURI: string;
-    name: string;
 }
 
 export interface Series {
     available: number;
     collectionURI: string;
-    items: Item2[];
+    items: any[];
     returned: number;
 }
 
-export interface Item3 {
+export interface Item {
     resourceURI: string;
     name: string;
     type: string;
@@ -113,19 +106,14 @@ export interface Item3 {
 export interface Stories {
     available: number;
     collectionURI: string;
-    items: Item3[];
+    items: Item[];
     returned: number;
-}
-
-export interface Item4 {
-    resourceURI: string;
-    name: string;
 }
 
 export interface Events {
     available: number;
     collectionURI: string;
-    items: Item4[];
+    items: any[];
     returned: number;
 }
 
@@ -134,11 +122,11 @@ export interface Url {
     url: string;
 }
 
-export interface Result {
+export interface Characters {
     id: number;
     name: string;
     description: string;
-    modified?: Data; //Date
+    modified?: Date;
     thumbnail: Thumbnail;
     resourceURI: string;
     comics: Comics;
@@ -153,10 +141,10 @@ export interface Data {
     limit: number;
     total: number;
     count: number;
-    results: Result[];
+    results: Characters[];
 }
 
-export interface character {
+export interface RootCharacter {
     code: number;
     status: string;
     copyright: string;
@@ -168,3 +156,5 @@ export interface character {
 
 
 
+
+  

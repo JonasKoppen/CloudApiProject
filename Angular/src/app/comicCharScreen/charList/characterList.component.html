@@ -3,29 +3,9 @@
 <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                    <div class="card" *ngIf="character">
-                            <div class="card-header">
-                                {{character.name}}
-                            </div>
-                            <div class="card-block">
-                                    <img class="img-fluid" [src]="imageUrl" alt="No image" >
-                                    <table clas="table table-hover">
-                                            <thead>
-                                                <tr class="blue-grey lighten-4">
-                                                    <th>nr</th>
-                                                    <th>comic</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr *ngFor="let comic of character.comics.items" mdbWavesEffect (click)="pressComic(comics)">
-                                                <th>x</th>
-                                                <td>{{comic.name}}</td>
-                                            </tr>
-                                            </tbody>
-                
-                                        </table>
-                            </div>
-                        </div>
+                    <app-charProfile
+                    [CharId]="CharId"
+                    ></app-charProfile>
             </div>
             <div class="col-sm-6 text-align:center">
                 <div class="card" style="margin:5px">
@@ -36,14 +16,14 @@
                         <br>
                             <div class="row" style="margin: 3px">
                                 <div class="col">
-                                    <input type="text" class = "form-control" [(ngModel)]="CharName">
+                                    <input type="text" class = "form-control" [(ngModel)]="SetCharName">
                                 </div>
                                 <div class="col-3">
                                     <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "sortBy" (click)="btnClick()"></a>
                                 </div>
                                 <div class="col">
                                     <select class="form-control" [(ngModel)]="SetLimit">
-                                        <option *ngFor = "let i of limit" value="{{i}}">{{i}}</option>
+                                        <option *ngFor = "let i of limit" value="{{i}}" >{{i}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -67,10 +47,10 @@
 
                         </table>
                         <div class="row">
-                                <div class="col">
+                                <div class="col-6 align-self-start">
                                     <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
                                 </div>
-                                <div class="col">
+                                <div class="col-6 align-self-end">
                                     <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
                                 </div>
                         </div>
