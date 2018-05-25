@@ -120,6 +120,7 @@ namespace MarvelMoviesAPI.Controllers.Objects
                     Phase = 1,
                     TimeLineOrder = 5
                 };
+                context.MarvelMovies.Add(mv);
                 mv = new Movie()
                 {
                     Title = "Thor: The Dark World",
