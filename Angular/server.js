@@ -124,6 +124,10 @@ server.use(ex.static("public"));
 server.use(ex.static(__dirname + '/dist'));
 server.use('/assets', ex.static(__dirname+'/dist/src/app/assets'));
 
+server.get('*', (req, res) => {
+    res.redirect("intro.html")   
+})
+
 
 
 server.listen(port, hostname, () => {
