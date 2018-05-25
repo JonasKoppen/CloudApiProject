@@ -30,7 +30,7 @@ export class MovieComponent implements OnInit{
     ngOnInit(){
         this._svc.getMovies()
         .subscribe(result => {this.movies = result.data; this.maxAmount = result.count;})
-        setInterval(this.Update , 3000);
+        //setInterval(this.Update , 3000);
     }
 
     Update = () =>
@@ -48,6 +48,7 @@ export class MovieComponent implements OnInit{
     {
         this.sortBy = value
         console.log(value)
+        this.Update()
     }
 
     get SetLimit()
@@ -58,6 +59,7 @@ export class MovieComponent implements OnInit{
     set SetLimit(value : number)
     {
         this.setLimit = value
+        this.Update()
     }
 
     btnClick(){
@@ -67,19 +69,23 @@ export class MovieComponent implements OnInit{
         else if(this.dir = "desc"){
             this.dir = "asc"
         }
-        
+        this.Update()
     }
 
     btnPrevious(){
         if(this.offset - this.setLimit > 0)
             this.offset = this.offset - this.setLimit
         console.log(this.offset)
+        this.Update()
     }
+
     btnNext(){
         if(this.offset + this.setLimit < this.maxAmount)
             this.offset = this.offset + this.setLimit
         console.log(this.offset)
+        this.Update()
     }
+
     pressMovie(id){
         this._svc.getMoviesById(id).subscribe(result => this.movie = result);
         console.log("you presse me")

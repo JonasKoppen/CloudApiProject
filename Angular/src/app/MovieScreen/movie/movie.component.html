@@ -39,18 +39,22 @@
                         <h1>Movies</h1>
                     </div>
                     <div class="card-block" >
+                        
+                            <div class="row" style="margin: 3px">
+                                    <div class="col">
+                                        <input type="text" class = "form-control" [(ngModel)]="movieName">
+                                    </div>
+                                    <div class="col-3">
+                                        <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "dir" (click)="btnClick()"></a>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-control" [(ngModel)]="SetSort">
+                                            <option *ngFor = "let i of sortByList" value="{{i}}" >{{i}}</option>
+                                        </select>
+                                    </div>
+                                </div>
                         <table clas="table table-hover">
                             <thead>
-                                <div class="column">
-                                    <input type="text" class = "form-control" [(ngModel)]="movieName">
-                                    <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "dir" (click)="btnClick()"></a>
-                                    <select class="form-control" [(ngModel)]="SetSort">
-                                            <option *ngFor = "let j of sortByList" value="{{j}}">{{j}}</option>
-                                        </select>
-                                    <select class="form-control" [(ngModel)]="SetLimit">
-                                        <option *ngFor = "let i of limit" value="{{i}}">{{i}}</option>
-                                    </select>
-                                </div>
                                 <tr class="blue-grey lighten-4">
                                     <th>ID</th>
                                     <th>title</th>
