@@ -1,10 +1,46 @@
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <input type="text" class = "form-control" [(ngModel)]="CharReq">
-        </div>
-        <div class="card-block">
-                <img class="img-fluid" [src]="imageUrl" alt="No image" >
+<div class="card" *ngIf="character">
+    <div class="card-header">
+        {{character.name}}
+    </div>
+    <div class="card-block">
+        <table class="table table-striped">
+                <tbody>
+                <tr><th>Picture:</th><th><img class="img-fluid float-right" [src]="imageUrl" alt="No image"></th></tr>
+
+                <tr><th>Desctription:</th><th>{{character.description}}</th></tr>
+
+                <tr><th># Featured comics::</th><th> {{character.comics.available}}</th></tr>
+                <select class="form-control" [(ngModel)]="SetLimit">
+                        <option *ngFor = "let i of limit" value="{{i}}" >{{i}}</option>
+                    </select>
+
+                </tbody>
+            </table>
+        <table clas="table table-hover">
+                <thead>
+                    <tr class="blue-grey lighten-4">
+                        <th>nr</th>
+                        <th>comic</th>
+                        <th>picture</th>
+                    </tr>
+                </thead>
+                <tbody>  
+                <tr *ngFor="let comic of comics" mdbWavesEffect (click)="ClickComic(comic.id)" >
+                    <th>{{comic.id}}</th>
+                    <td >{{comic.title}}</td>
+                    <td><img class="imgComic" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="No image"></td>
+                </tr>
+                </tbody>
+                
+
+        </table>
+        <div class="row">
+                <div class="col-6 align-self-start">
+                        <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
+                    </div>
+                    <div class="col-6 align-self-end">
+                        <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
+                    </div>
         </div>
     </div>
 </div>

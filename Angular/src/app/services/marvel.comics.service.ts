@@ -9,7 +9,6 @@ export class ComicService {
     apikey = "acdb5b6c98e4a5408e05093f4d0f6de4";
     privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
     timeStamp: number;
-    totalChars = 1491;
     baseLink = "https://gateway.marvel.com/v1/public/comics";
     
 
@@ -35,8 +34,30 @@ export class ComicService {
         return this._http.get<ComicRoot>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
-}
 
+    getComicByCharacterId(id:number, limit?:number, offset?:number) : Observable<ComicRoot>
+    {
+        var myHash = this.createHash();
+        var request = '?'
+        if(limit > 0 && limit < 100)
+        {
+            request += 'limit='+limit+'&'
+        }
+        if(offset > 0)
+        {
+            if(offset < 0)
+            {
+                offset = 0;
+                
+            }
+            request += 'offset='+offset+'&'
+        }
+        var req = "https://gateway.marvel.com/v1/public/characters" + '/'+ id + '/comics' + request +'ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
+        console.log(req);
+        return this._http.get<ComicRoot>(req)
+        //.do(data => console.log(JSON.stringify(data)));
+    }
+}
 
 
     export interface TextObject {
@@ -123,21 +144,26 @@ export class ComicService {
         returned: number;
     }
 
+    export interface Item4 {
+        resourceURI: string;
+        name: string;
+    }
+
     export interface Events {
         available: number;
         collectionURI: string;
-        items: any[];
+        items: Item4[];
         returned: number;
     }
 
-    export interface Comic {
+    export interface ComicResult {
         id: number;
         digitalId: number;
         title: string;
         issueNumber: number;
         variantDescription: string;
         description: string;
-        modified: any;
+        modified?: Date;
         isbn: string;
         upc: string;
         diamondCode: string;
@@ -152,7 +178,7 @@ export class ComicService {
         variants: Variant[];
         collections: any[];
         collectedIssues: CollectedIssue[];
-        dates: Date[];
+        dates?: Date[];
         prices: Price[];
         thumbnail: Thumbnail;
         images: Image[];
@@ -167,7 +193,7 @@ export class ComicService {
         limit: number;
         total: number;
         count: number;
-        comics: Comic[];
+        results: ComicResult[];
     }
 
     export interface ComicRoot {
@@ -177,8 +203,11 @@ export class ComicService {
         attributionText: string;
         attributionHTML: string;
         etag: string;
-        comics: ComicData;
+        data: ComicData;
     }
+
+
+
 
 
 

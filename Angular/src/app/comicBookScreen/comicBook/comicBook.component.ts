@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { debug } from 'util';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { validateConfig } from '@angular/router/src/config';
-import { Comic, ComicService } from '../../services/marvel.comics.service.1';
+import { ComicService, ComicResult } from '../../services/marvel.comics.service';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -13,7 +13,7 @@ styleUrls: ['./comicBook.component.scss']
 }) 
 export class ComicBookComponent implements OnInit{
     comicId: number
-    comic: Comic
+    comic: ComicResult
 
     imageUrl : string;
 
@@ -24,8 +24,8 @@ export class ComicBookComponent implements OnInit{
     }
 
     ngOnInit(){
-        //this._svc.getCharacterUnknown(this.CharName,this.sortByCommand,this.setLimit,this.offset)
-        //      .subscribe(result => this.characters = result.data.results);
+        this._svc.getComicById(this.comicId)
+              .subscribe(result => this.comic = result.data.results[0]);
         //setInterval(this.Update , 10000);
         setInterval(this.UpdateImage , 1000);
     }
@@ -33,7 +33,7 @@ export class ComicBookComponent implements OnInit{
     Update = () =>
     {
         this._svc.getComicById(this.comicId)
-            .subscribe(result => {this.comic = result.comics.comics[0]});
+            .subscribe(result => {this.comic = result.data.results[0]});
         if(this.comic != null){
             console.log(this.comic.thumbnail.path +'.'+ this.comic.thumbnail.extension);
             this.imageUrl = this.comic.thumbnail.path +'.'+ this.comic.thumbnail.extension;
@@ -69,7 +69,6 @@ export class ComicBookComponent implements OnInit{
                     "issueNumber": 22,
                     "variantDescription": "Lozano Teaser Variant",
                     "description": null,
-                    "modified": "2016-12-16T15:29:02-0500",
                     "isbn": "",
                     "upc": "75960608297102231",
                     "diamondCode": "",
@@ -97,16 +96,6 @@ export class ComicBookComponent implements OnInit{
                     ],
                     "collections": [],
                     "collectedIssues": [],
-                    "dates": [
-                        {
-                            "type": "onsaleDate",
-                            "date": "2029-12-31T00:00:00-0500"
-                        },
-                        {
-                            "type": "focDate",
-                            "date": "2016-12-07T00:00:00-0500"
-                        }
-                    ],
                     "prices": [
                         {
                             "type": "printPrice",
@@ -172,7 +161,6 @@ export class ComicBookComponent implements OnInit{
                     "issueNumber": 4,
                     "variantDescription": "",
                     "description": null,
-                    "modified": "-0001-11-30T00:00:00-0500",
                     "isbn": "",
                     "upc": "",
                     "diamondCode": "",
@@ -195,16 +183,6 @@ export class ComicBookComponent implements OnInit{
                     "variants": [],
                     "collections": [],
                     "collectedIssues": [],
-                    "dates": [
-                        {
-                            "type": "onsaleDate",
-                            "date": "2029-12-31T00:00:00-0500"
-                        },
-                        {
-                            "type": "focDate",
-                            "date": "-0001-11-30T00:00:00-0500"
-                        }
-                    ],
                     "prices": [
                         {
                             "type": "printPrice",

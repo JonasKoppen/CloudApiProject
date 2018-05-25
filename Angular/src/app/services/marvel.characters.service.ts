@@ -57,7 +57,7 @@ export class CharacterService {
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    findCharacterByName(name) : Observable<RootCharacter>
+    getCharacterByName(name) : Observable<RootCharacter>
     {
         var myHash = this.createHash();
         var req = this.baseLink + '?nameStartsWith='+ name +'&ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
@@ -66,7 +66,7 @@ export class CharacterService {
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    findCharacterById(id) : Observable<RootCharacter>
+    getCharacterById(id) : Observable<RootCharacter>
     {
         var myHash = this.createHash();
         var req = this.baseLink + '/'+ id +'?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
@@ -75,14 +75,7 @@ export class CharacterService {
         //.do(data => console.log(JSON.stringify(data)));
     }
 
-    findComicById(id) : Observable<RootCharacter>
-    {
-        var myHash = this.createHash();
-        var req = this.baseLink + '/'+ id +'?ts='+ this.timeStamp + '&apikey=' + this.apikey + '&hash=' + myHash;
-        console.log(req);
-        return this._http.get<RootCharacter>(req)
-        //.do(data => console.log(JSON.stringify(data)));
-    }
+    
 }
 
 export interface Thumbnail {
@@ -129,7 +122,7 @@ export interface Url {
     url: string;
 }
 
-export interface Result {
+export interface Characters {
     id: number;
     name: string;
     description: string;
@@ -148,7 +141,7 @@ export interface Data {
     limit: number;
     total: number;
     count: number;
-    results: Result[];
+    results: Characters[];
 }
 
 export interface RootCharacter {
@@ -162,3 +155,6 @@ export interface RootCharacter {
 }
 
 
+
+
+  
