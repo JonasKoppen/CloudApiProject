@@ -54,9 +54,9 @@ namespace MarvelMoviesAPI.Controllers
         {
             UserModel user = null;
 
-            if (login.Username == "mario" && login.Password == "secret")
+            if (login.Username == "Admin" && login.Password == "student")
             {
-                user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com" };
+                user = new UserModel { Name = "Admin", Email = "jonas.koppen@student.ap.be" };
             }
             return user;
         }
@@ -71,7 +71,6 @@ namespace MarvelMoviesAPI.Controllers
         {
             public string Name { get; set; }
             public string Email { get; set; }
-            public DateTime Birthdate { get; set; }
         }
     }
 }

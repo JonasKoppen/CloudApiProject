@@ -11,6 +11,7 @@ export class ComicService {
     timeStamp: number;
     baseLink = "https://gateway.marvel.com/v1/public/comics";
     
+    
 
     getTimestamp(): number{
         return (Date.now()/1000)

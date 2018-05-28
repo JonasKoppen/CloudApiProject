@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {Http, Headers} from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import {Md5} from 'ts-md5/dist/md5';
 
 //Mss hiervan apparte services maken, 1 voor hero, 1 voor movie en 1 voor villain?
 @Injectable()
 export class MoviesService {
-    apikey = "acdb5b6c98e4a5408e05093f4d0f6de4";
+    apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Mjc1MTU3NDQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NjM5MzkvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo2MzkzOS8ifQ.97m1ymQUTUUGqX_yw7ZntzJixGI-ieFKVIgXQKlLYt";
     privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
     timeStamp: number;
     totalChars = 1491;
@@ -49,13 +50,20 @@ export class MoviesService {
         return this._http.get<Movie>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
+
+    createAuthorizationHeader(headers: HttpHeaders) {
+        headers.append('Authorization', 'Bearer' + this.apikey); 
+      }
     
     postMovie(movie: Movie): Observable<Movie>{
-        return this._http.post<Movie>(this.baseLink+"movie", movie)//.do(data => console.log(JSON.stringify(data)));
+        let header = new HttpHeaders();
+        this.createAuthorizationHeader(header)
+        return this._http.post<Movie>(this.baseLink+"movie", movie, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
     deleteMovie(movie: Movie): Observable<Movie>{
-
-        return this._http.delete<Movie>(this.baseLink+"movie/"+movie.id)//.do(data => console.log(JSON.stringify(data)));
+        let header = new HttpHeaders();
+        this.createAuthorizationHeader(header)
+        return this._http.delete<Movie>(this.baseLink+"movie/"+movie.id, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
     updateMovie(movie: Movie): Observable<Movie>{
         return this._http.put<Movie>(this.baseLink+"movie", movie)//.do(data => console.log(JSON.stringify(data)));

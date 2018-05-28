@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MarvelMoviesAPI.Controllers.Objects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -123,7 +124,7 @@ namespace MarvelMoviesAPI.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPut, Authorize]
         public IActionResult UpdateMovie([FromBody] Movie updateMovie)
         {
             var orgMovie = context.MarvelMovies.Find(updateMovie.Id);
@@ -141,7 +142,7 @@ namespace MarvelMoviesAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult CreateMovie([FromBody] Movie newMovie)
         {
             if (newMovie == null)
@@ -156,7 +157,7 @@ namespace MarvelMoviesAPI.Controllers
         }
 
         [Route("{id}")]
-        [HttpDelete]
+        [HttpDelete, Authorize]
         public IActionResult DeleteMovie(int id)
         {
             var Movie = context.MarvelMovies.Find(id);
