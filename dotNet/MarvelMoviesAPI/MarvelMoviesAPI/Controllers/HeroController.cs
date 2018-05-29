@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MarvelMoviesAPI.Controllers.Objects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -91,7 +92,7 @@ namespace MarvelMoviesAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut, Authorize]
         public IActionResult UpdateHero([FromBody] Hero updateHero)
         {
             var orgHero = context.Heroes.Find(updateHero.Id);
@@ -108,7 +109,7 @@ namespace MarvelMoviesAPI.Controllers
 
         
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult CreateHero([FromBody] Hero newHero)
         {
             //hero toevoegen in de databank, Id wordt dan ook toegekend
@@ -119,7 +120,7 @@ namespace MarvelMoviesAPI.Controllers
         }
 
         [Route("{id}")]
-        [HttpDelete]
+        [HttpDelete, Authorize]
         public IActionResult DeleteHero(int id)
         {
             var Hero = context.Heroes.Find(id);

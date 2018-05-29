@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {Http, Headers} from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import {Md5} from 'ts-md5/dist/md5';
 
 //Mss hiervan apparte services maken, 1 voor hero, 1 voor movie en 1 voor villain?
 @Injectable()
 export class MoviesService {
-    apikey = "acdb5b6c98e4a5408e05093f4d0f6de4";
+    apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Mjc1NzU3NzksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NjM5MzkvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo2MzkzOS8ifQ.M5IqG1LSZiPqrDbrrXNWuUs0TW0h3UP8gFBNO9MqFlo";
     privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
     timeStamp: number;
     totalChars = 1491;
@@ -49,15 +50,25 @@ export class MoviesService {
         return this._http.get<Movie>(req)
         //.do(data => console.log(JSON.stringify(data)));
     }
+
+    createAuthorizationHeader() {
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                        .set('authorization', 'Bearer ' + this.apikey);
+        return headers
+      }
     
     postMovie(movie: Movie): Observable<Movie>{
-        return this._http.post<Movie>(this.baseLink+"movie", movie)//.do(data => console.log(JSON.stringify(data)));
+        
+        let header = this.createAuthorizationHeader()
+        return this._http.post<Movie>(this.baseLink+"movie", movie, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
     deleteMovie(movie: Movie): Observable<Movie>{
-
-        return this._http.delete<Movie>(this.baseLink+"movie/"+movie.id)//.do(data => console.log(JSON.stringify(data)));
+        let header = this.createAuthorizationHeader()
+        console.log(header.get('Authorization'))
+        return this._http.delete<Movie>(this.baseLink+"movie/"+movie.id, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
     updateMovie(movie: Movie): Observable<Movie>{
+        let header = this.createAuthorizationHeader()
         return this._http.put<Movie>(this.baseLink+"movie", movie)//.do(data => console.log(JSON.stringify(data)));
     }
 
@@ -89,14 +100,16 @@ export class MoviesService {
     }
 
     postHero(hero: Hero): Observable<Hero>{
-        return this._http.post<Hero>(this.baseLink+"hero", hero)//.do(data => console.log(JSON.stringify(data)));
+        let header = this.createAuthorizationHeader()
+        return this._http.post<Hero>(this.baseLink+"hero", hero, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
     deleteHero(hero: Hero): Observable<Hero>{
-
-        return this._http.delete<Hero>(this.baseLink+"hero/"+hero.id)//.do(data => console.log(JSON.stringify(data)));
+        let header = this.createAuthorizationHeader()
+        return this._http.delete<Hero>(this.baseLink+"hero/"+hero.id, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
     updateHero(hero: Hero): Observable<Hero>{
-        return this._http.put<Hero>(this.baseLink+"hero", hero)//.do(data => console.log(JSON.stringify(data)));
+        let header = this.createAuthorizationHeader()
+        return this._http.put<Hero>(this.baseLink+"hero", hero, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
 
     getVillain(name?,sort?,dir?) : Observable<RootVillain>
@@ -123,14 +136,16 @@ export class MoviesService {
     }
 
     postVillain(villain: Villain): Observable<Villain>{
-        return this._http.post<Villain>(this.baseLink+"villain", villain)//.do(data => console.log(JSON.stringify(data)));
+        let header = this.createAuthorizationHeader()
+        return this._http.post<Villain>(this.baseLink+"villain", villain, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
     deleteVillain(villain: Villain): Observable<Villain>{
-
-        return this._http.delete<Villain>(this.baseLink+"villain/"+villain.id)//.do(data => console.log(JSON.stringify(data)));
+        let header = this.createAuthorizationHeader()
+        return this._http.delete<Villain>(this.baseLink+"villain/"+villain.id, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
     updateVillain(villain: Villain): Observable<Villain>{
-        return this._http.put<Villain>(this.baseLink+"villain", villain)//.do(data => console.log(JSON.stringify(data)));
+        let header = this.createAuthorizationHeader()
+        return this._http.put<Villain>(this.baseLink+"villain", villain, {headers: header})//.do(data => console.log(JSON.stringify(data)));
     }
 
     
