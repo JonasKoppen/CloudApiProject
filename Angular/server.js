@@ -3,7 +3,7 @@ const request = require('request')
 const cookie = require('cookie-parser')
 // const bp = require('body-parser')
 
-const hostname = 'localhost';
+const hostname = '0.0.0.0';
 const port = 3005;
 
 const server = ex();
