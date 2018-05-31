@@ -3,7 +3,7 @@ const request = require('request')
 const cookie = require('cookie-parser')
 // const bp = require('body-parser')
 
-const hostname = 'localhost';
+const hostname = '0.0.0.0';
 const port = 3005;
 
 const server = ex();
@@ -42,16 +42,7 @@ server.get('/', (req, res, next) => {
     var cookie = req.cookies.auth;
     //if no cookie, then redirect to Login page
     if (!cookie) {
-        res.redirect("intro.html")
-    }
-    else
-        return next();
-})
-server.get('/index.html', (req, res, next) => {
-    var cookie = req.cookies.auth;
-    //if no cookie, then redirect to Login page
-    if (!cookie) {
-        res.redirect("intro.html")
+        res.redirect("index.html")
     }
     else
         return next();
