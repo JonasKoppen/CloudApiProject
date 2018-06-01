@@ -32,50 +32,52 @@
                         </div>
                     </div>
             </div>
-            <div class="col-sm-3"></div>
-            <div class="col-sm-4 text-align:center">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-6 text-align:center">
                 <div class="card" style="margin:0">
                     <div class="card-header" style="text-align:center">
                         <h1>Movies</h1>
                     </div>
-                    <div class="card-block" >
-                        
+                    <div class="card-block" >   
+                        <div class="row" style="margin: 3px">
+                                <div class="col">
+                                    <input type="text" class = "form-control" [(ngModel)]="movieName">
+                                </div>
+                                <div class="col-3">
+                                    <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "dir" (click)="btnClick()"></a>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" [(ngModel)]="SetSort">
+                                        <option *ngFor = "let i of sortByList" value="{{i}}" >{{i}}</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="row" style="margin: 3px">
-                                    <div class="col">
-                                        <input type="text" class = "form-control" [(ngModel)]="movieName">
+
+                                <table clas="table table-hover">
+                                    <thead>
+                                        <tr class="blue-grey lighten-4">
+                                            <th>ID</th>
+                                            <th>title</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let mov of movies" class='waves-light' mdbWavesEffect (click)="pressMovie(mov.id)">
+                                        <th>{{mov.id}}</th>
+                                        <td>{{mov.title}}</td>
+                                    </tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                            <div class="row">
+                                    <div class="col-6 align-self-start">
+                                        <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
                                     </div>
-                                    <div class="col-3">
-                                        <a type="button" class="btn btn-primary waves-light" mdbWavesEffect [textContent] = "dir" (click)="btnClick()"></a>
+                                    <div class="col-6 align-self-end">
+                                        <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
                                     </div>
-                                    <div class="col">
-                                        <select class="form-control" [(ngModel)]="SetSort">
-                                            <option *ngFor = "let i of sortByList" value="{{i}}" >{{i}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                        <table clas="table table-hover">
-                            <thead>
-                                <tr class="blue-grey lighten-4">
-                                    <th>ID</th>
-                                    <th>title</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let mov of movies" class='waves-light' mdbWavesEffect (click)="pressMovie(mov.id)">
-                                <th>{{mov.id}}</th>
-                                <td>{{mov.title}}</td>
-                            </tr>
-                            </tbody>
-                            
-                        </table>
-                        <div class="row">
-                                <div class="col-6 align-self-start">
-                                    <a type="button" class="btn btn-danger waves-light" mdbWavesEffect  (click)="btnPrevious()">Previous</a>
-                                </div>
-                                <div class="col-6 align-self-end">
-                                    <a type="button" class="btn btn-success waves-light" mdbWavesEffect  (click)="btnNext()">Next</a>
-                                </div>
-                        </div>
+                            </div>
                     </div>    
                 </div>
             </div>

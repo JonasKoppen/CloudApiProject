@@ -7,10 +7,8 @@ import {Md5} from 'ts-md5/dist/md5';
 //Mss hiervan apparte services maken, 1 voor hero, 1 voor movie en 1 voor villain?
 @Injectable()
 export class MoviesService {
-    apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Mjc1NzU3NzksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NjM5MzkvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo2MzkzOS8ifQ.M5IqG1LSZiPqrDbrrXNWuUs0TW0h3UP8gFBNO9MqFlo";
-    privateKey = "fdc26ca47556432b17f1372f3174645ed85853fe";
-    timeStamp: number;
-    totalChars = 1491;
+    apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Mjc4NDQyODUsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NjM5MzkvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo2MzkzOS8ifQ.oEbefehMP5Ppl0dJNLr7L2z-90wnyH_zDy7rMmlvEgY";
+
     baseLink = 'http://localhost:5050/api/v1/'
     
 

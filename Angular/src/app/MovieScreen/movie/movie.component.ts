@@ -63,10 +63,10 @@ export class MovieComponent implements OnInit{
     }
 
     btnClick(){
-        if(this.dir = "asc"){
+        if(this.dir == "asc"){
             this.dir = "desc"
         }
-        else if(this.dir = "desc"){
+        else if(this.dir == "desc"){
             this.dir = "asc"
         }
         this.Update()
