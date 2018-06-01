@@ -17,6 +17,7 @@ import { CharProfileModule } from './comicCharScreen/charProfile-module/charProf
 import { HomeComponent } from './welcomeScreen/home/home.component';
 
 import { MovieComponent } from './MovieScreen/movie/movie.component';
+import { IntroComponent } from './introScreen/Intro/intro.component';
 
 import { IntroComponent } from './introScreen/Intro/intro.component';
 
@@ -38,6 +39,7 @@ import { ComicService } from './services/marvel.comics.service';
 
     ComicBookComponent,
 
+    IntroComponent,
     HomeComponent,
     CharacterListComponent,
 
@@ -56,6 +58,7 @@ import { ComicService } from './services/marvel.comics.service';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      {path: "intro", component : IntroComponent},
       {path: "home", component : HomeComponent},
       {path: "list", component : CharacterListComponent},
       {path: "movie", component : MovieComponent},
