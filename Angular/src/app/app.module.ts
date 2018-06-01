@@ -19,7 +19,6 @@ import { HomeComponent } from './welcomeScreen/home/home.component';
 import { MovieComponent } from './MovieScreen/movie/movie.component';
 import { IntroComponent } from './introScreen/Intro/intro.component';
 
-import { IntroComponent } from './introScreen/Intro/intro.component';
 
 import { AddMovieComponent } from './addMCUScreen/addMovie/addMovie.component';
 import { AddHeroComponent } from './addMCUScreen/addHero/addHero.component';
@@ -27,6 +26,8 @@ import { AddScreenComponent } from './addMCUScreen/addScreen/addScreen.component
 import { AddVillainComponent } from './addMCUScreen/addVillain/addVillain.component';
 import { ComicBookComponent } from './comicBookScreen/comicBook/comicBook.component';
 import { ComicService } from './services/marvel.comics.service';
+import { SocialLoginModule } from 'angular5-social-login';
+import { getAuthServiceConfigs } from './socialloginConfig';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ComicService } from './services/marvel.comics.service';
     AddScreenComponent,
     AddVillainComponent,
 
-    IntroComponent
+    IntroComponent,
+    SocialLoginModule
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,7 @@ import { ComicService } from './services/marvel.comics.service';
       {path: "list", component : CharacterListComponent},
       {path: "movie", component : MovieComponent},
       {path: "addMovie", component : AddScreenComponent},
+      {path: "intro", component : IntroComponent},
       { path: 'comic/:id', component: ComicBookComponent},
       {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},
@@ -73,7 +76,8 @@ import { ComicService } from './services/marvel.comics.service';
   providers: [
     CharacterService,
     MoviesService,
-    ComicService
+    ComicService,
+    SocialLoginModule.apply(getAuthServiceConfigs)
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,4 +9,17 @@ styleUrls: ['./home.component.scss']
 }) 
 export class HomeComponent{
     title = 'home';
+    public userData : any;
+    constructor(private router: Router) {
+        if (localStorage.getItem('userData')) {
+        this.userData = localStorage.getItem('userData');
+        } else {
+        this.router.navigate(['']);
+        }
+    }
+    logout() {
+        localStorage.setItem('userData', '');
+        localStorage.clear();
+        this.router.navigate(['']);
+      }
 }
