@@ -60,6 +60,7 @@ import { ComicService } from './services/marvel.comics.service';
       {path: "list", component : CharacterListComponent},
       {path: "movie", component : MovieComponent},
       {path: "addMovie", component : AddScreenComponent},
+      {path: "intro", component : IntroComponent},
       { path: 'comic/:id', component: ComicBookComponent},
       {path: "", redirectTo:"home", pathMatch: 'full'},
       {path: "404", component: PageNotFoundComponent},

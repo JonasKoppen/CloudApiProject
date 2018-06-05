@@ -1,8 +1,17 @@
 
 .intro-2 {
-    background: url("../../../assets/marvel-logo.jpg")no-repeat center center;
+    background: url("../../../assets/marvel-logo.jpg") no-repeat center center;
     background-size: cover;
 }
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+  }
+
 .view {
     height: 100vh !important;
 }
