@@ -42,7 +42,7 @@ server.get('/', (req, res, next) => {
     var cookie = req.cookies.auth;
     //if no cookie, then redirect to Login page
     if (!cookie) {
-        res.redirect("intro.html")
+        res.redirect("/intro.html")
     }
     else
         return next();
@@ -51,7 +51,7 @@ server.get('/index.html', (req, res, next) => {
     var cookie = req.cookies.auth;
     //if no cookie, then redirect to Login page
     if (!cookie) {
-        res.redirect("intro.html")
+        res.redirect("/intro.html")
     }
     else
         return next();
